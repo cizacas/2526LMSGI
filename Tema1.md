@@ -33,14 +33,19 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 ```
 
 2. **Elementos**: Los elementos son los bloques de construcción básicos de un documento XML. Un elemento comienza con una etiqueta de apertura y termina con una etiqueta de cierre. Por ejemplo:
+   
 ```xml
 <nombre>Juan Pérez</nombre>
 ```
+
 3. **Atributos**: Los elementos pueden tener atributos que proporcionan información adicional sobre el elemento. Los atributos se escriben dentro de la etiqueta de apertura del elemento. Por ejemplo:
+
 ```xml
 <persona edad="30" ciudad="Madrid">
 ```
+
 4. **Contenido**: El contenido de un elemento puede ser texto, otros elementos o una combinación de ambos. Por ejemplo:
+
 ```xml
 <persona>
     <nombre>Juan Pérez</nombre>
@@ -48,7 +53,9 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
     <ciudad>Madrid</ciudad>
 </persona>
 ```
+
 5. **Elementos anidados**: Los elementos pueden contener otros elementos, creando una estructura jerárquica. Por ejemplo:
+
 ```xml
 <libros>
     <libro>
@@ -63,10 +70,13 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
     </libro>    
 </libros>
 ```
+
 6. **Comentarios**: Puedes agregar comentarios en un documento XML utilizando la siguiente sintaxis:
+
 ```xml
 <!-- Este es un comentario -->
 ```
+
 7. **Reglas de sintaxis**:
    - Todos los elementos deben tener una etiqueta de cierre correspondiente.
    - Los nombres de los elementos y atributos son sensibles a mayúsculas y minúsculas.
@@ -74,39 +84,49 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
    - Los atributos deben estar entre comillas dobles ("") o comillas simples ('').
    - Un documento XML debe tener un único elemento raíz que contenga todos los demás elementos.
    - Espacios en blancos y saltos de línea. Detrás del nombre de una etiqueta se permite escribir un espacio en blanco (blank space) o un salto de línea (line break). Por ejemplo, sintácticamente es correcto escribir:
+
 ```xml
 <nombre >Maria</nombre>
 <!-- seria lo mismo escribir -->
 <nombre>Maria</nombre>
 ```
+
    - Sin embargo, no es correcto escribir:
+
 ```xml
 < nombre>Maria</nombre>
 <!-- ni tampoco -->
 <nombre>Maria</ nombre>
 ```
+
    - Los espacios en blanco dentro del contenido de un elemento son significativos. Por ejemplo:
+
 ```xml
 <nombre>  Maria  </nombre>
 ```
    - En este caso, el contenido del elemento <nombre> incluye los espacios en blanco antes y después de "Maria". Si deseas eliminar esos espacios, debes hacerlo explícitamente.
    - No se permiten caracteres especiales sin escapar. Por ejemplo, los caracteres `<`, `>`, `&`, `'` y `"` deben ser reemplazados por sus entidades correspondientes (`&lt;`, `&gt;`, `&amp;`, `&apos;`, `&quot;`) si se utilizan dentro del contenido de un elemento o atributo.
    - No se permiten etiquetas vacías sin cerrar. Por ejemplo, la siguiente etiqueta es incorrecta:
+
 ```xml
 <nombre>
 ```
    - En su lugar, debes cerrarla correctamente:
+
 ```xml
 <nombre></nombre>
 ```
    - Alternativamente, puedes usar la sintaxis de etiqueta vacía:
+
 ```xml
 <nombre/>
 ```
+
 ### Atributo xml:space
 El atributo `xml:space` se utiliza para controlar cómo se manejan los espacios en blanco dentro de un elemento XML. Este atributo puede tener dos valores principales: `default` y `preserve`.
 - `default`: Indica que los espacios en blanco dentro del elemento pueden ser tratados de manera estándar, lo que significa que **los espacios múltiples pueden ser reducidos a un solo espacio y los espacios al principio y al final del contenido pueden ser eliminados**.
 - `preserve`:Indica que los espacios en blanco dentro del valor de texto deben preservarse tal como están, sin eliminación ni reducción. Esto es útil cuando se desea conservar los espacios en blanco significativos en el texto, como en los códigos de programación o los contenidos preformateados.
+
 ```xml
 <mensaje xml:space="preserve">
     Este    es    un    mensaje    con    espacios    preservados.
@@ -116,9 +136,11 @@ El atributo `xml:space` se utiliza para controlar cómo se manejan los espacios 
 </mensaje>
 ```
 En este ejemplo, el primer elemento <mensaje> conservará todos los espacios en blanco tal como están, mientras que el segundo elemento <mensaje> reducirá los espacios múltiples a un solo espacio y eliminará los espacios al principio y al final del contenido.
+
 ### Tabulaciones
 Las tabulaciones (tabs) son caracteres especiales que se utilizan para crear espacios en blanco adicionales en el texto. En XML, las tabulaciones se tratan como espacios en blanco y pueden ser utilizadas para mejorar la legibilidad del código XML.
 Por ejemplo:
+
 ```xml
 <libros>
     <libro>
@@ -142,9 +164,11 @@ Para crear un documento XML, puedes utilizar cualquier **editor de texto plano**
 1. Abre tu editor de texto preferido.
 2. Crea un nuevo archivo
 3. Escribe la declaración XML al comienzo del archivo
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 ```
+
 Esta línea especifica la versión de XML que estás utilizando y la codificación de caracteres.
 4. A continuación, puedes comenzar a definir los elementos, atributos y contenido de tu documento XML. Por ejemplo:
 
@@ -163,6 +187,7 @@ Esta línea especifica la versión de XML que estás utilizando y la codificaci�
 </libro>
 </libros>
 ```
+
 En este ejemplo, hemos creado un elemento raíz <libros> que contiene un elemento hijo <libro>. El elemento <libro> tiene elementos hijos como <titulo>, <autor> y <anio>, que representan los datos de un libro específico.
 5. Guarda el archivo con una extensión `.xml`, por ejemplo, «mis_libros.xml».
 
@@ -206,9 +231,11 @@ En la tabla siguiente tienes algunos ejemplos de caracteres especiales en XML y 
 | €        | &euro;     | &#8364;   | &#x20AC;     |
 
 estas referencias se utilizan para **evitar conflictos con la sintaxis XML** y asegurar que los caracteres especiales sean interpretados correctamente. En el siguiente ejemplo el carácter < se mostrará correctamente en el contenido del elemento sin causar errores en el análisis del documento XML.:
+
 ```xml
 <mensaje>Este es un ejemplo de uso del carácter &lt; en XML.</mensaje>
 ```
+
 puedes ver más caracteres y símbolos aquí[ascii.cl/es/codigos-html.htm](https://ascii.cl/es/codigos-html.htm)
 
 ## Documentos XML bien formados 
@@ -237,6 +264,7 @@ Un documento XML puede ser clasificado en dos categorías principales: bien form
 Los espacios de nombres (namespaces) en XML son una forma de evitar conflictos de nombres cuando se combinan elementos y atributos de diferentes vocabularios XML. Un espacio de nombres es un identificador único que se utiliza para distinguir entre elementos y atributos que pueden tener el mismo nombre pero pertenecen a diferentes contextos o dominios.
 Los espacios de nombres se definen utilizando un URI (Uniform Resource Identifier) que actúa como un identificador único. Aunque los URIs suelen tener la forma de una URL, no es necesario que apunten a un recurso real en la web; simplemente sirven como identificadores únicos.
 Para utilizar espacios de nombres en un documento XML, se declara un espacio de nombres en el elemento raíz o en cualquier otro elemento utilizando el atributo `xmlns` (XML Namespace). Por ejemplo:
+
 ```xml
 <libros xmlns:ficcion="http://www.ejemplo.com/ficcion" xmlns:no-ficcion="http://www.ejemplo.com/no-ficcion">
     <ficcion:libro>
@@ -249,15 +277,18 @@ Para utilizar espacios de nombres en un documento XML, se declara un espacio de 
     </no-ficcion:libro> 
 </libros>
 ```
+
 En este ejemplo, hemos declarado dos espacios de nombres: `ficcion` y `no-ficcion`, cada uno con su propio URI. Los elementos `<libro>`, `<titulo>` y `<autor>` están prefijados con el espacio de nombres correspondiente para indicar a qué vocabulario pertenecen.   
 ### Prefijos de espacio de nombres
 Los prefijos de espacio de nombres son abreviaturas que se utilizan para referirse a un espacio de nombres específico en un documento XML. Estos prefijos se definen en la declaración del espacio de nombres utilizando el atributo `xmlns:prefix`, donde `prefix` es el nombre del prefijo que deseas utilizar.
 Por ejemplo, en la siguiente declaración de espacio de nombres:
+
 ```xml
 <libros xmlns:ficcion="http://www.ejemplo.com/ficcion">
 ```
 Hemos definido el prefijo `ficcion` para el espacio de nombres `http://www.ejemplo.com/ficcion`. A partir de este punto en el documento XML, podemos utilizar el prefijo `ficcion` para referirnos a los elementos que pertenecen a ese espacio de nombres.
 Por ejemplo:
+
 ```xml
 <libros xmlns:ficcion="http://www.ejemplo.com/ficcion">
     <ficcion:libro>
@@ -267,9 +298,11 @@ Por ejemplo:
 </libros>
 ```
 En este ejemplo, los elementos `<libro>`, `<titulo>` y `<autor>` están prefijados con el prefijo `ficcion`, lo que indica que pertenecen al espacio de nombres `http://www.ejemplo.com/ficcion`.
+
 ### Espacio de nombres predeterminado
 Un espacio de nombres predeterminado (default namespace) en XML es un espacio de nombres que se aplica a todos los elementos que no tienen un prefijo específico. Esto significa que cualquier elemento sin prefijo se considera que pertenece al espacio de nombres predeterminado.
 Para declarar un espacio de nombres predeterminado, se utiliza el atributo `xmlns` sin un prefijo. Por ejemplo:
+
 ```xml
 <libros xmlns="http://www.ejemplo.com/ficcion">
     <libro>
@@ -278,10 +311,12 @@ Para declarar un espacio de nombres predeterminado, se utiliza el atributo `xmln
     </libro>
 </libros>
 ```
+
 En este ejemplo, hemos declarado un espacio de nombres predeterminado `http://www.ejemplo.com/ficcion`. Todos los elementos dentro del elemento `<libros>` que no tienen un prefijo específico (como `<libro>`, `<titulo>`, y `<autor>`) se consideran que pertenecen a este espacio de nombres predeterminado.
 ### Mezcla de espacios de nombres
 Es posible mezclar espacios de nombres con y sin prefijos en un documento XML. Puedes tener un espacio de nombres predeterminado para ciertos elementos y utilizar prefijos para otros elementos que pertenecen a diferentes espacios de nombres.
 Por ejemplo:
+
 ```xml
 <libros xmlns="http://www.ejemplo.com/ficcion" xmlns:no-ficcion="http://www.ejemplo.com/no-ficcion">
     <libro>
