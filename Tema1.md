@@ -1,4 +1,21 @@
 # XML
+- [XML](#xml)
+  - [Introducción a XML](#introducción-a-xml)
+    - [Diferencia entre XML y HTML](#diferencia-entre-xml-y-html)
+  - [Cómo se escribe un documento XML: Sintaxis](#cómo-se-escribe-un-documento-xml-sintaxis)
+    - [Atributo xml:space](#atributo-xmlspace)
+    - [Tabulaciones](#tabulaciones)
+  - [Cómo se crea un documento XML](#cómo-se-crea-un-documento-xml)
+    - [Crear un documento XML en cualquier editor de texto plano](#crear-un-documento-xml-en-cualquier-editor-de-texto-plano)
+    - [Crear un documento XML en Visual Studio Code](#crear-un-documento-xml-en-visual-studio-code)
+  - [Caracteres especiales en XML](#caracteres-especiales-en-xml)
+  - [Documentos XML bien formados](#documentos-xml-bien-formados)
+  - [Espacios de nombres en XML](#espacios-de-nombres-en-xml)
+    - [Prefijos de espacio de nombres](#prefijos-de-espacio-de-nombres)
+    - [Espacio de nombres predeterminado](#espacio-de-nombres-predeterminado)
+    - [Mezcla de espacios de nombres](#mezcla-de-espacios-de-nombres)
+  - [Referencias](#referencias)
+
 ## Introducción a XML
 XML (eXtensible Markup Language) es un lenguaje de marcado que define un conjunto de reglas para la codificación de documentos en un formato que es tanto legible por humanos como por máquinas. Fue desarrollado por el World Wide Web Consortium (W3C) y se utiliza principalmente para almacenar y transportar datos.
 XML es bastante autodescriptivo:
@@ -20,7 +37,7 @@ XML y HTML fueron diseñados con objetivos diferentes:
 ## Cómo se escribe un documento XML: Sintaxis
 Un documento XML está formado por una jerarquía de elementos. Veamos punto por punto cómo se escribe un documento XML. 
 
-1. **Declaración XML**: Un documento XML debe comenzar con una declaración XML opcional que especifica la versión de XML y la codificación de caracteres utilizada. La declaración típica es:
+* **Declaración XML**: Un documento XML debe comenzar con una declaración XML opcional que especifica la versión de XML y la codificación de caracteres utilizada. La declaración típica es:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 ```
@@ -32,19 +49,19 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ```
 
-2. **Elementos**: Los elementos son los bloques de construcción básicos de un documento XML. Un elemento comienza con una etiqueta de apertura y termina con una etiqueta de cierre. Por ejemplo:
+* **Elementos**: Los elementos son los bloques de construcción básicos de un documento XML. Un elemento comienza con una etiqueta de apertura y termina con una etiqueta de cierre. Por ejemplo:
    
 ```xml
 <nombre>Juan Pérez</nombre>
 ```
 
-3. **Atributos**: Los elementos pueden tener atributos que proporcionan información adicional sobre el elemento. Los atributos se escriben dentro de la etiqueta de apertura del elemento. Por ejemplo:
+* **Atributos**: Los elementos pueden tener atributos que proporcionan información adicional sobre el elemento. Los atributos se escriben dentro de la etiqueta de apertura del elemento. Por ejemplo:
 
 ```xml
 <persona edad="30" ciudad="Madrid">
 ```
 
-4. **Contenido**: El contenido de un elemento puede ser texto, otros elementos o una combinación de ambos. Por ejemplo:
+* **Contenido**: El contenido de un elemento puede ser texto, otros elementos o una combinación de ambos. Por ejemplo:
 
 ```xml
 <persona>
@@ -54,7 +71,7 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 </persona>
 ```
 
-5. **Elementos anidados**: Los elementos pueden contener otros elementos, creando una estructura jerárquica. Por ejemplo:
+* **Elementos anidados**: Los elementos pueden contener otros elementos, creando una estructura jerárquica. Por ejemplo:
 
 ```xml
 <libros>
@@ -71,13 +88,13 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 </libros>
 ```
 
-6. **Comentarios**: Puedes agregar comentarios en un documento XML utilizando la siguiente sintaxis:
+* **Comentarios**: Puedes agregar comentarios en un documento XML utilizando la siguiente sintaxis:
 
 ```xml
 <!-- Este es un comentario -->
 ```
 
-7. **Reglas de sintaxis**:
+* **Reglas de sintaxis**:
    - Todos los elementos deben tener una etiqueta de cierre correspondiente.
    - Los nombres de los elementos y atributos son sensibles a mayúsculas y minúsculas.
    - Los nombres de los elementos deben comenzar con una letra o un guion bajo (_), y pueden contener letras, dígitos, guiones (-), puntos (.) y guiones bajos (_).
