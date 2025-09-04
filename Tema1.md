@@ -157,7 +157,7 @@ El atributo `xml:space` se utiliza para controlar cómo se manejan los espacios 
 En este ejemplo, el primer elemento `<mensaje>` conservará todos los espacios en blanco tal como están, mientras que el segundo elemento `<mensaje>` reducirá los espacios múltiples a un solo espacio y eliminará los espacios al principio y al final del contenido.
 
 ### Tabulaciones
-Las tabulaciones (tabs) son caracteres especiales que se utilizan para crear espacios en blanco adicionales en el texto. En XML, las tabulaciones se tratan como espacios en blanco y pueden ser utilizadas para mejorar la legibilidad del código XML.
+Las tabulaciones son caracteres especiales que se utilizan para crear espacios en blanco adicionales en el texto. En XML, las tabulaciones se tratan como espacios en blanco y pueden ser utilizadas para mejorar la legibilidad del código XML.
 Por ejemplo:
 
 ```xml
@@ -174,7 +174,7 @@ Por ejemplo:
     </libro>
 </libros>
 ```
-En este ejemplo, las tabulaciones se utilizan para indentar los elementos hijos dentro del elemento raíz <libros>, lo que hace que la estructura del documento sea más clara y fácil de leer.
+En este ejemplo, las tabulaciones se utilizan para indentar los elementos hijos dentro del elemento raíz `<libros>`, lo que hace que la estructura del documento sea más clara y fácil de leer.
     
 ## Cómo se crea un documento XML
 Para crear un documento XML, puedes utilizar cualquier **editor de texto plano**, por ejemplo el Bloc de notas de Windows o el editor Nano de Linux, o cualquier editor de código, como Visual Studio Code
@@ -207,7 +207,7 @@ Esta línea especifica la versión de XML que estás utilizando y la codificaci�
 </libros>
 ```
 
-En este ejemplo, hemos creado un elemento raíz <libros> que contiene un elemento hijo <libro>. El elemento <libro> tiene elementos hijos como <titulo>, <autor> y <anio>, que representan los datos de un libro específico.
+En este ejemplo, hemos creado un elemento raíz `<libros>` que contiene un elemento hijo `<libro>`. El elemento `<libro>` tiene elementos hijos como `<titulo>`, `<autor>` y `<anio>`, que representan los datos de un libro específico.
 5. Guarda el archivo con una extensión `.xml`, por ejemplo, «mis_libros.xml».
 
 ### Crear un documento XML en Visual Studio Code
@@ -241,7 +241,7 @@ En la tabla siguiente tienes algunos ejemplos de caracteres especiales en XML y 
 
 | Carácter | Entidad    | Decimal   | Hexadecimal |
 |----------|------------|-----------|-------------|
-| «        | &quot;     | &#34;     | &#x22;      |
+| «        | `&quot;`     | `&#34;`     | `&#x22;`      |
 | &        | &amp;      | &#38;     | &#x26;      |
 | ‘        | &apos;     | &#39;     | &#x27;      |
 | <        | &lt;       | &#60;     | &#x3C;      |
