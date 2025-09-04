@@ -99,10 +99,10 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 * **Reglas de sintaxis**:
    - Todos los elementos deben tener una etiqueta de cierre correspondiente.
    - Los nombres de los elementos y atributos son sensibles a mayúsculas y minúsculas.
-   - Los nombres de los elementos deben comenzar con una letra o un guión bajo`(_)`, y pueden contener letras, dígitos, guiones, puntos y guiones bajos.
+   - Los nombres de los elementos deben comenzar con una letra o un guión bajo`(_)`, y pueden contener letras, dígitos, guiones `(-)`, puntos`(.)` y guiones bajos`(_)`.
    - Los atributos deben estar entre comillas dobles o comillas simples.
    - Un documento XML debe tener un único elemento raíz que contenga todos los demás elementos.
-   - Espacios en blancos y saltos de línea. Detrás del nombre de una etiqueta se permite escribir un espacio en blanco (blank space) o un salto de línea (line break). Por ejemplo, sintácticamente es correcto escribir:
+   - Espacios en blancos y saltos de línea. Detrás del nombre de una etiqueta se permite escribir un espacio en blanco o un salto de línea. Por ejemplo, sintácticamente es correcto escribir:
 
 ```xml
 <nombre >Maria</nombre>
@@ -144,7 +144,7 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 ### Atributo xml:space
 El atributo `xml:space` se utiliza para controlar cómo se manejan los espacios en blanco dentro de un elemento XML. Este atributo puede tener dos valores principales: `default` y `preserve`.
 - `default`: Indica que los espacios en blanco dentro del elemento pueden ser tratados de manera estándar, lo que significa que **los espacios múltiples pueden ser reducidos a un solo espacio y los espacios al principio y al final del contenido pueden ser eliminados**.
-- `preserve`:Indica que los espacios en blanco dentro del valor de texto deben preservarse tal como están, sin eliminación ni reducción. Esto es útil cuando se desea conservar los espacios en blanco significativos en el texto, como en los códigos de programación o los contenidos preformateados.
+- `preserve`:Indica que **los espacios en blanco dentro del valor de texto deben preservarse tal como están, sin eliminación ni reducción**. Esto es útil cuando se desea conservar los espacios en blanco significativos en el texto, como en los códigos de programación o los contenidos preformateados.
 
 ```xml
 <mensaje xml:space="preserve">
@@ -154,7 +154,7 @@ El atributo `xml:space` se utiliza para controlar cómo se manejan los espacios 
     Este    es    un    mensaje    con    espacios    no    preservados.
 </mensaje>
 ```
-En este ejemplo, el primer elemento <mensaje> conservará todos los espacios en blanco tal como están, mientras que el segundo elemento <mensaje> reducirá los espacios múltiples a un solo espacio y eliminará los espacios al principio y al final del contenido.
+En este ejemplo, el primer elemento `<mensaje>` conservará todos los espacios en blanco tal como están, mientras que el segundo elemento `<mensaje>` reducirá los espacios múltiples a un solo espacio y eliminará los espacios al principio y al final del contenido.
 
 ### Tabulaciones
 Las tabulaciones (tabs) son caracteres especiales que se utilizan para crear espacios en blanco adicionales en el texto. En XML, las tabulaciones se tratan como espacios en blanco y pueden ser utilizadas para mejorar la legibilidad del código XML.
