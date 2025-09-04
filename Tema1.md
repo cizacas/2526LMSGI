@@ -1,7 +1,7 @@
 # XML
 - [XML](#xml)
   - [Introducción a XML](#introducción-a-xml)
-    - [Diferencia entre XML y HTML](#diferencia-entre-xml-y-html)
+    - [Diferencias entre XML y HTML](#diferencias-entre-xml-y-html)
   - [Cómo se escribe un documento XML: Sintaxis](#cómo-se-escribe-un-documento-xml-sintaxis)
     - [Atributo xml:space](#atributo-xmlspace)
     - [Tabulaciones](#tabulaciones)
@@ -27,10 +27,10 @@ XML es bastante autodescriptivo:
 </persona>
 ```
 Pero aún así, el XML anterior no hace nada. XML es sólo información envuelta en las etiquetas.
-### Diferencia entre XML y HTML
+### Diferencias entre XML y HTML
 XML y HTML fueron diseñados con objetivos diferentes:
 
-* XML fue diseñado para llevar datos - con enfoque en qué datos es
+* XML fue diseñado para llevar datos - con enfoque en qué datos son
 * HTML fue diseñado para mostrar datos - con enfoque en cómo se ven los datos
 * Las etiquetas XML no están predefinidas como las etiquetas HTML
   
@@ -38,13 +38,15 @@ XML y HTML fueron diseñados con objetivos diferentes:
 Un documento XML está formado por una jerarquía de elementos. Veamos punto por punto cómo se escribe un documento XML. 
 
 * **Declaración XML**: Un documento XML debe comenzar con una declaración XML opcional que especifica la versión de XML y la codificación de caracteres utilizada. La declaración típica es:
+  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 ```
 El atributo *standalone* es opcional y se utiliza para indicar si el documento XML puede funcionar de manera independiente o si requiere información adicional de otro archivo externo (como un DTD o un esquema) para ser interpretado correctamente.
 
-* **standalone="yes"**: Indica que el documento XML **no depende de ningún archivo externo** y puede ser interpretado de manera autónoma. Todos los datos necesarios para la interpretación están contenidos dentro del propio archivo XML.
-* **standalone="no"**: Indica que el documento XML depende de un archivo externo, como un DTD o un esquema, para ser interpretado correctamente. El archivo externo proporciona la definición de la estructura y reglas que el XML debe seguir.
+  * **standalone="yes"**: Indica que el documento XML **no depende de ningún archivo externo** y puede ser interpretado de manera autónoma. Todos los datos necesarios para la interpretación están contenidos dentro del propio archivo XML.
+  * **standalone="no"**: Indica que el documento XML **depende de un archivo externo**, como un DTD o un esquema, para ser interpretado correctamente. El archivo externo proporciona la definición de la estructura y reglas que el XML debe seguir.
+  
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ```
@@ -97,8 +99,8 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 * **Reglas de sintaxis**:
    - Todos los elementos deben tener una etiqueta de cierre correspondiente.
    - Los nombres de los elementos y atributos son sensibles a mayúsculas y minúsculas.
-   - Los nombres de los elementos deben comenzar con una letra o un guion bajo (_), y pueden contener letras, dígitos, guiones (-), puntos (.) y guiones bajos (_).
-   - Los atributos deben estar entre comillas dobles ("") o comillas simples ('').
+   - Los nombres de los elementos deben comenzar con una letra o un guión bajo`(_)`, y pueden contener letras, dígitos, guiones, puntos y guiones bajos.
+   - Los atributos deben estar entre comillas dobles o comillas simples.
    - Un documento XML debe tener un único elemento raíz que contenga todos los demás elementos.
    - Espacios en blancos y saltos de línea. Detrás del nombre de una etiqueta se permite escribir un espacio en blanco (blank space) o un salto de línea (line break). Por ejemplo, sintácticamente es correcto escribir:
 
