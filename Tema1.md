@@ -28,6 +28,9 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 
 * **standalone="yes"**: Indica que el documento XML **no depende de ningún archivo externo** y puede ser interpretado de manera autónoma. Todos los datos necesarios para la interpretación están contenidos dentro del propio archivo XML.
 * **standalone="no"**: Indica que el documento XML depende de un archivo externo, como un DTD o un esquema, para ser interpretado correctamente. El archivo externo proporciona la definición de la estructura y reglas que el XML debe seguir.
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+```
 
 2. **Elementos**: Los elementos son los bloques de construcción básicos de un documento XML. Un elemento comienza con una etiqueta de apertura y termina con una etiqueta de cierre. Por ejemplo:
 ```xml
