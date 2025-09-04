@@ -242,12 +242,12 @@ En la tabla siguiente tienes algunos ejemplos de caracteres especiales en XML y 
 | Carácter | Entidad    | Decimal   | Hexadecimal |
 |----------|------------|-----------|-------------|
 | «        | `&quot;`     | `&#34;`     | `&#x22;`      |
-| &        | &amp;      | &#38;     | &#x26;      |
-| ‘        | &apos;     | &#39;     | &#x27;      |
-| <        | &lt;       | &#60;     | &#x3C;      |
-| >        | &gt;       | &#62;     | &#x3E;      |
-| ©        | &copy;     | &#169;    | &#xA9;      |
-| €        | &euro;     | &#8364;   | &#x20AC;     |
+| &        | `&amp;`      | `&#38;`     | `&#x26;`      |
+| ‘        | `&apos;`     | `&#39;`     | `&#x27;`      |
+| <        | `&lt;`       | `&#60;`     | `&#x3C;`      |
+| >        | `&gt;`       | `&#62;`     | `&#x3E;`      |
+| ©        | `&copy;`     | `&#169;`    | `&#xA9;`      |
+| €        | `&euro;`     | `&#8364;`   | `&#x20AC;`     |
 
 estas referencias se utilizan para **evitar conflictos con la sintaxis XML** y asegurar que los caracteres especiales sean interpretados correctamente. En el siguiente ejemplo el carácter < se mostrará correctamente en el contenido del elemento sin causar errores en el análisis del documento XML.:
 
@@ -258,13 +258,13 @@ estas referencias se utilizan para **evitar conflictos con la sintaxis XML** y a
 puedes ver más caracteres y símbolos aquí[ascii.cl/es/codigos-html.htm](https://ascii.cl/es/codigos-html.htm)
 
 ## Documentos XML bien formados 
-Un documento XML puede ser clasificado en dos categorías principales: bien formado (well-formed) y válido (valid).
-1. **Bien formado (Well-formed)**: Un documento XML se considera bien formado si cumple con las reglas básicas de sintaxis de XML. Estas reglas incluyen:
+Un documento XML puede ser clasificado en dos categorías principales: bien formado y válido.
+1. **Bien formado**: Un documento XML se considera bien formado si cumple con las reglas básicas de sintaxis de XML. Estas reglas incluyen:
    * El documento contiene únicamente caracteres Unicode válidos.
    * Hay un elemento raíz que contiene al resto de elementos.
    * Los nombres de los elementos y de sus atributos no contienen espacios.
-   * El primer carácter de un nombre de elemento o de atributo puede ser una letra, dos puntos (:) o subrayado (_).
-   * El resto de los caracteres pueden ser también números, guiones (-) o puntos (.).
+   * El primer carácter de un nombre de elemento o de atributo puede ser una letra, dos puntos `(:)` o subrayado `(_)`.
+   * El resto de los caracteres pueden ser también números, guiones `(-)` o puntos `(.)`.
    * Los caracteres < y & sólo se utilizan como comienzo de marcas.
    * Las etiquetas de apertura, de cierre y vacías están correctamente anidadas (no se solapan) y no falta ni sobra ninguna etiqueta de apertura o cierre.
    * Las etiquetas de cierre coinciden con las de apertura (incluso en el uso de mayúsculas y minúsculas).
@@ -275,12 +275,12 @@ Un documento XML puede ser clasificado en dos categorías principales: bien form
    * No existen referencias en los valores de los atributos.
   
    Un documento bien formado garantiza que pueda ser leído y procesado por cualquier parser XML.
-2. **Válido (Valid)**: Un documento XML se considera válido si, además de ser bien formado, cumple con un conjunto específico de reglas definidas por un esquema o DTD (Document Type Definition) lo veremos más adelante.
+2. **Válido**: Un documento XML se considera válido si, además de ser bien formado, cumple con un conjunto específico de reglas definidas por un esquema o DTD (Document Type Definition) lo veremos más adelante.
 
 :pencil: Realizar actividad 2
 
 ## Espacios de nombres en XML
-Los espacios de nombres (namespaces) en XML son una forma de evitar conflictos de nombres cuando se combinan elementos y atributos de diferentes vocabularios XML. Un espacio de nombres es un identificador único que se utiliza para distinguir entre elementos y atributos que pueden tener el mismo nombre pero pertenecen a diferentes contextos o dominios.
+Los espacios de nombres en XML son una forma de evitar conflictos de nombres cuando se combinan elementos y atributos de diferentes vocabularios XML. Un espacio de nombres es un identificador único que se utiliza para distinguir entre elementos y atributos que pueden tener el mismo nombre pero pertenecen a diferentes contextos o dominios.
 Los espacios de nombres se definen utilizando un URI (Uniform Resource Identifier) que actúa como un identificador único. Aunque los URIs suelen tener la forma de una URL, no es necesario que apunten a un recurso real en la web; simplemente sirven como identificadores únicos.
 Para utilizar espacios de nombres en un documento XML, se declara un espacio de nombres en el elemento raíz o en cualquier otro elemento utilizando el atributo `xmlns` (XML Namespace). Por ejemplo:
 
@@ -298,6 +298,7 @@ Para utilizar espacios de nombres en un documento XML, se declara un espacio de 
 ```
 
 En este ejemplo, hemos declarado dos espacios de nombres: `ficcion` y `no-ficcion`, cada uno con su propio URI. Los elementos `<libro>`, `<titulo>` y `<autor>` están prefijados con el espacio de nombres correspondiente para indicar a qué vocabulario pertenecen.   
+
 ### Prefijos de espacio de nombres
 Los prefijos de espacio de nombres son abreviaturas que se utilizan para referirse a un espacio de nombres específico en un documento XML. Estos prefijos se definen en la declaración del espacio de nombres utilizando el atributo `xmlns:prefix`, donde `prefix` es el nombre del prefijo que deseas utilizar.
 Por ejemplo, en la siguiente declaración de espacio de nombres:
@@ -332,6 +333,7 @@ Para declarar un espacio de nombres predeterminado, se utiliza el atributo `xmln
 ```
 
 En este ejemplo, hemos declarado un espacio de nombres predeterminado `http://www.ejemplo.com/ficcion`. Todos los elementos dentro del elemento `<libros>` que no tienen un prefijo específico (como `<libro>`, `<titulo>`, y `<autor>`) se consideran que pertenecen a este espacio de nombres predeterminado.
+
 ### Mezcla de espacios de nombres
 Es posible mezclar espacios de nombres con y sin prefijos en un documento XML. Puedes tener un espacio de nombres predeterminado para ciertos elementos y utilizar prefijos para otros elementos que pertenecen a diferentes espacios de nombres.
 Por ejemplo:
