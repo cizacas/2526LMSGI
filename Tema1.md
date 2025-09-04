@@ -235,8 +235,8 @@ Utilizar XML en Visual Studio Code (VS Code) es un proceso bastante sencillo y d
 ## Caracteres especiales en XML
 En XML, ciertos caracteres tienen significados especiales y no pueden ser utilizados directamente en el contenido de los elementos o atributos. Estos caracteres especiales son:
 1. **Entidades** (entities): Las entidades son secuencias de caracteres que representan símbolos especiales. Comienzan con un ampersand (&), seguido de un nombre o número y terminan con un punto y coma (;). Las entidades son fáciles de leer y entender.
-2. **Códigos decimales** (decimal codes): Los códigos decimales son valores numéricos que representan símbolos en la tabla ASCII. Estos códigos se escriben en la forma &#n;, donde «n» es el número decimal correspondiente al símbolo. 
-3. **Códigos hexadecimales** (hexadecimal codes): Los códigos hexadecimales son valores numéricos en base 16 que representan símbolos en la tabla ASCII. Los códigos hexadecimales son similares a los códigos decimales, pero utilizan una representación en base 16 en lugar de base 10. Estos códigos se escriben en la forma &#xn;, donde «n» es el valor hexadecimal correspondiente al símbolo.
+2. **Códigos decimales** (decimal codes): Los códigos decimales son valores numéricos que representan símbolos en la tabla ASCII. Estos códigos se escriben en la forma **&#n;**, donde «n» es el número decimal correspondiente al símbolo. 
+3. **Códigos hexadecimales** (hexadecimal codes): Los códigos hexadecimales son valores numéricos en base 16 que representan símbolos en la tabla ASCII. Los códigos hexadecimales son similares a los códigos decimales, pero utilizan una representación en base 16 en lugar de base 10. Estos códigos se escriben en la forma **&#xn;**, donde «n» es el valor hexadecimal correspondiente al símbolo.
 En la tabla siguiente tienes algunos ejemplos de caracteres especiales en XML y su representación en entidad y referencia en decimal y hexadecimal:
 
 | Carácter | Entidad    | Decimal   | Hexadecimal |
