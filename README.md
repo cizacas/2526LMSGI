@@ -6,4 +6,4 @@ Apuntes de lenguaje de marcas y sistemas de información del CFGS de Desarrollo 
 
 **1. UNIDAD 1. – XML**
 
-  [Apuntes de la Unidad 1.](apuntes/Tema1.md)
+  [Apuntes de la Unidad 1.](Tema1.md)
