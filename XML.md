@@ -1,5 +1,6 @@
-# XML
-- [XML](#xml)
+# Reconocimiento de las características de los lenguajes de marcas- XML
+- [Reconocimiento de las características de los lenguajes de marcas- XML](#reconocimiento-de-las-características-de-los-lenguajes-de-marcas--xml)
+  - [Introducción](#introducción)
   - [Introducción a XML](#introducción-a-xml)
     - [Diferencias entre XML y HTML](#diferencias-entre-xml-y-html)
   - [Cómo se escribe un documento XML: Sintaxis](#cómo-se-escribe-un-documento-xml-sintaxis)
@@ -15,6 +16,18 @@
     - [Espacio de nombres predeterminado](#espacio-de-nombres-predeterminado)
     - [Mezcla de espacios de nombres](#mezcla-de-espacios-de-nombres)
   - [Referencias](#referencias)
+
+## Introducción
+
+Los lenguajes de marcas existen prácticamente desde el comienzo de la informática. Cubren la necesidad de disponer de lenguajes sencillos para **el intercambio de información entre distintos sistemas**. Con la llegada de internet, algunos de los lenguajes de marcas se convirtieron en piedras angulares sobre las que construir la **World Wide Web**
+
+`Los lenguajes de marcas no son lenguajes de programación`. No contienen instrucciones ni implican acciones directas. Son reglas que organizan la información con el objetivo de darle una estructura uniforme y facilitar su procesamiento automático.
+Una clasificación simplificada de los lenguajes de marcas podría ser la siguiente :
+
+* Lenguajes orientados a la presentación de información. El más conocido puede ser `HTML`, lo veremos en la unidad 2
+  
+* Lenguajes orientados al almacenamiento y procesado de información. Los más conocidos pueden ser `XML` y `JSON`
+
 
 ## Introducción a XML
 XML (eXtensible Markup Language) es un lenguaje de marcado que define un conjunto de reglas para la codificación de documentos en un formato que es tanto legible por humanos como por máquinas. Fue desarrollado por el World Wide Web Consortium (W3C) y se utiliza principalmente para almacenar y transportar datos.
