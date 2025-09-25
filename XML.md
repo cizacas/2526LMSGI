@@ -4,6 +4,7 @@
   - [Introducción a XML](#introducción-a-xml)
     - [Diferencias entre XML y HTML](#diferencias-entre-xml-y-html)
   - [Cómo se escribe un documento XML: Sintaxis](#cómo-se-escribe-un-documento-xml-sintaxis)
+  - [Cuándo usar elementos vs atributos:](#cuándo-usar-elementos-vs-atributos)
     - [Atributo xml:space](#atributo-xmlspace)
     - [Tabulaciones](#tabulaciones)
   - [Cómo se crea un documento XML](#cómo-se-crea-un-documento-xml)
@@ -152,6 +153,26 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 
 ```xml
 <nombre/>
+```
+
+## Cuándo usar elementos vs atributos:
+
+| **Usar ATRIBUTOS para:** | **Usar ELEMENTOS para:** |
+|--------------------------|---------------------------|
+| ✅ Identificadores únicos | ✅ Contenido textual largo |
+| ✅ Clasificadores/categorías | ✅ Datos estructurados |
+| ✅ Metadatos simples | ✅ Contenido que puede crecer |
+| ✅ Valores de control | ✅ Datos que necesitan sub-elementos |
+
+```xml
+<!-- CORRECTO: Búsquedas eficientes -->
+<alumno idEscolar="123456" curso="1" ciclo="DAW">
+    <nombre>Ana</nombre>           <!-- Contenido textual -->
+    <apellidos>López Pérez</apellidos>  <!-- Puede ser largo -->
+    <modulos>                      <!-- Estructura compleja -->
+        <modulo codigo="BD">Base de datos</modulo>
+    </modulos>
+</alumno>
 ```
 
 ### Atributo xml:space
