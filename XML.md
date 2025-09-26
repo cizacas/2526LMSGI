@@ -331,8 +331,12 @@ Un documento XML puede ser clasificado en dos categorías principales: bien form
 :pencil: Realizar actividad 2
 
 ## Espacios de nombres en XML
-Los espacios de nombres en XML son una forma de evitar conflictos de nombres cuando se combinan elementos y atributos de diferentes vocabularios XML. Un espacio de nombres es un identificador único que se utiliza para distinguir entre elementos y atributos que pueden tener el mismo nombre pero pertenecen a diferentes contextos o dominios.
+Los espacios de nombres en XML son una forma de evitar conflictos de nombres cuando se combinan elementos y atributos de diferentes vocabularios XML.
+
+Un espacio de nombres es un identificador único que se utiliza para distinguir entre elementos y atributos que pueden tener el mismo nombre pero pertenecen a diferentes contextos o dominios.
+
 Los espacios de nombres se definen utilizando un URI (Uniform Resource Identifier) que actúa como un identificador único. Aunque los URIs suelen tener la forma de una URL, no es necesario que apunten a un recurso real en la web; simplemente sirven como identificadores únicos.
+
 Para utilizar espacios de nombres en un documento XML, se declara un espacio de nombres en el elemento raíz o en cualquier otro elemento utilizando el atributo `xmlns` (XML Namespace). Por ejemplo:
 
 ```xml
@@ -351,7 +355,9 @@ Para utilizar espacios de nombres en un documento XML, se declara un espacio de 
 En este ejemplo, hemos declarado dos espacios de nombres: `ficcion` y `no-ficcion`, cada uno con su propio URI. Los elementos `<libro>`, `<titulo>` y `<autor>` están prefijados con el espacio de nombres correspondiente para indicar a qué vocabulario pertenecen.   
 
 ### Prefijos de espacio de nombres
-Los prefijos de espacio de nombres son abreviaturas que se utilizan para referirse a un espacio de nombres específico en un documento XML. Estos prefijos se definen en la declaración del espacio de nombres utilizando el atributo `xmlns:prefix`, donde `prefix` es el nombre del prefijo que deseas utilizar.
+Los prefijos de espacio de nombres son abreviaturas que se utilizan para referirse a un espacio de nombres específico en un documento XML. 
+
+Estos prefijos se definen en la declaración del espacio de nombres utilizando el atributo `xmlns:prefix`, donde `prefix` es el nombre del prefijo que deseas utilizar.
 Por ejemplo, en la siguiente declaración de espacio de nombres:
 
 ```xml
@@ -371,7 +377,8 @@ Por ejemplo:
 En este ejemplo, los elementos `<libro>`, `<titulo>` y `<autor>` están prefijados con el prefijo `ficcion`, lo que indica que pertenecen al espacio de nombres `http://www.ejemplo.com/ficcion`.
 
 ### Espacio de nombres predeterminado
-Un espacio de nombres predeterminado (default namespace) en XML es un espacio de nombres que se aplica a todos los elementos que no tienen un prefijo específico. Esto significa que cualquier elemento sin prefijo se considera que pertenece al espacio de nombres predeterminado.
+Un espacio de nombres predeterminado (default namespace) en XML es un espacio de nombres que se aplica a todos los elementos que no tienen un prefijo específico. 
+Esto significa que cualquier elemento sin prefijo se considera que pertenece al espacio de nombres predeterminado.
 Para declarar un espacio de nombres predeterminado, se utiliza el atributo `xmlns` sin un prefijo. Por ejemplo:
 
 ```xml
@@ -386,7 +393,8 @@ Para declarar un espacio de nombres predeterminado, se utiliza el atributo `xmln
 En este ejemplo, hemos declarado un espacio de nombres predeterminado `http://www.ejemplo.com/ficcion`. Todos los elementos dentro del elemento `<libros>` que no tienen un prefijo específico (como `<libro>`, `<titulo>`, y `<autor>`) se consideran que pertenecen a este espacio de nombres predeterminado.
 
 ### Mezcla de espacios de nombres
-Es posible mezclar espacios de nombres con y sin prefijos en un documento XML. Puedes tener un espacio de nombres predeterminado para ciertos elementos y utilizar prefijos para otros elementos que pertenecen a diferentes espacios de nombres.
+Es posible mezclar espacios de nombres con y sin prefijos en un documento XML.
+Puedes tener un espacio de nombres predeterminado para ciertos elementos y utilizar prefijos para otros elementos que pertenecen a diferentes espacios de nombres.
 Por ejemplo:
 
 ```xml
