@@ -1,0 +1,85 @@
+CUESTIONARIO XML - 10 PREGUNTAS DE SELECCIÓN MÚLTIPLE
+=======================================================
+(Puede haber más de una respuesta correcta por pregunta)
+
+1. ¿Cuáles de las siguientes afirmaciones sobre los lenguajes de marcas son correctas?
+   a) Los lenguajes de marcas son lenguajes de programación
+   b) Existen desde el comienzo de la informática
+   c) Facilitan el intercambio de información entre distintos sistemas
+   d) Contienen instrucciones que implican acciones directas
+
+2. ¿Qué elementos pueden incluirse en la declaración XML?
+   a) version
+   b) encoding
+   c) standalone
+   d) doctype
+
+3. ¿Cuáles de estas reglas son obligatorias para que un documento XML esté bien formado?
+   a) Debe tener un único elemento raíz
+   b) Las etiquetas deben estar correctamente anidadas
+   c) Los valores de los atributos deben estar entre comillas
+   d) Debe tener al menos 5 elementos
+
+4. ¿Qué caracteres pueden aparecer en los nombres de elementos XML después del primer carácter?
+   a) Números
+   b) Guiones (-)
+   c) Puntos (.)
+   d) Espacios en blanco
+
+5. ¿Cuáles son formas válidas de representar caracteres especiales en XML?
+   a) Entidades (&amp;)
+   b) Códigos decimales (&#38;)
+   c) Códigos hexadecimales (&#x26;)
+   d) Códigos binarios (&b101;)
+
+6. ¿En qué casos se recomienda usar atributos en lugar de elementos?
+   a) Para identificadores únicos
+   b) Para contenido textual largo
+   c) Para clasificadores/categorías
+   d) Para metadatos simples
+
+7. ¿Cuáles de estas características son correctas sobre el atributo xml:space?
+   a) Puede tener el valor "default"
+   b) Puede tener el valor "preserve"
+   c) Con "preserve" se conservan todos los espacios en blanco
+   d) Con "default" se eliminan todos los espacios en blanco
+
+8. ¿Qué herramientas y funcionalidades ofrece Visual Studio Code para trabajar con XML?
+   a) Extensión XML de Red Hat
+   b) Extensión XML Tools
+   c) Formatear documentos XML
+   d) Minificar y desminificar XML
+
+9. ¿Cuáles de estas afirmaciones sobre espacios de nombres en XML son correctas?
+   a) Se utilizan para evitar conflictos de nombres
+   b) Se definen usando URIs como identificadores únicos
+   c) Se declaran con el atributo xmlns
+   d) Los URIs deben apuntar siempre a recursos reales en la web
+
+10. ¿Qué tipos de espacios de nombres se pueden usar en XML?
+    a) Espacios de nombres con prefijo
+    b) Espacios de nombres predeterminados (default)
+    c) Espacios de nombres mixtos
+    d) Espacios de nombres automáticos
+
+RESPUESTAS CORRECTAS:
+=====================
+1. b, c (Los lenguajes de marcas existen desde el comienzo de la informática y facilitan el intercambio de información entre sistemas. NO son lenguajes de programación y NO contienen instrucciones directas)
+
+2. a, b, c (version, encoding y standalone son elementos válidos de la declaración XML. doctype no es parte de la declaración XML)
+
+3. a, b, c (Un documento XML bien formado debe tener un único elemento raíz, etiquetas correctamente anidadas y valores de atributos entre comillas. No hay requisito mínimo de elementos)
+
+4. a, b, c (Después del primer carácter, los nombres pueden contener números, guiones y puntos. Los espacios en blanco NO están permitidos)
+
+5. a, b, c (Las tres formas válidas son entidades, códigos decimales y hexadecimales. Los códigos binarios no existen en XML)
+
+6. a, c, d (Los atributos se recomiendan para identificadores únicos, clasificadores/categorías y metadatos simples. El contenido textual largo debe usar elementos)
+
+7. a, b, c (xml:space puede tener valores "default" y "preserve". Con "preserve" se conservan todos los espacios. Con "default" se pueden reducir/eliminar espacios, pero no todos necesariamente)
+
+8. a, b, c, d (VS Code ofrece ambas extensiones XML y las funcionalidades de formatear, minificar y desminificar)
+
+9. a, b, c (Los espacios de nombres evitan conflictos, usan URIs como identificadores y se declaran con xmlns. Los URIs NO necesitan apuntar a recursos reales)
+
+10. a, b, c (Se pueden usar espacios de nombres con prefijo, predeterminados y mixtos. Los espacios de nombres automáticos no existen)

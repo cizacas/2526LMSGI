@@ -4,7 +4,8 @@
   - [Introducción a XML](#introducción-a-xml)
     - [Diferencias entre XML y HTML](#diferencias-entre-xml-y-html)
   - [Cómo se escribe un documento XML: Sintaxis](#cómo-se-escribe-un-documento-xml-sintaxis)
-  - [Cuándo usar elementos vs atributos:](#cuándo-usar-elementos-vs-atributos)
+    - [Cuándo usar elementos vs atributos:](#cuándo-usar-elementos-vs-atributos)
+    - [Cuando usar etiqueta auto-cerrada `(/>)`:](#cuando-usar-etiqueta-auto-cerrada-)
     - [Atributo xml:space](#atributo-xmlspace)
     - [Tabulaciones](#tabulaciones)
   - [Cómo se crea un documento XML](#cómo-se-crea-un-documento-xml)
@@ -155,7 +156,7 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 <nombre/>
 ```
 
-## Cuándo usar elementos vs atributos:
+### Cuándo usar elementos vs atributos:
 
 | **Usar ATRIBUTOS para:** | **Usar ELEMENTOS para:** |
 |--------------------------|---------------------------|
@@ -173,6 +174,20 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
         <modulo codigo="BD">Base de datos</modulo>
     </modulos>
 </alumno>
+
+```
+### Cuando usar etiqueta auto-cerrada `(/>)`:
+✅ El elemento no tiene contenido interno (solo atributos)
+✅ Es más conciso y limpio
+
+Usa etiquetas de apertura y cierre cuando:
+✅ El elemento contiene texto o otros elementos hijos
+
+```xml
+<!-- Etiqueta auto-cerrada -->
+<imagen src="foto.jpg" alt="Descripción de la foto" />
+<!-- Etiqueta con apertura y cierre -->
+<descripcion>Esta es una foto de mis vacaciones.</descripcion>
 ```
 
 ### Atributo xml:space
