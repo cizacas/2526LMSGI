@@ -5,7 +5,7 @@
     - [Diferencias entre XML y HTML](#diferencias-entre-xml-y-html)
   - [Cómo se escribe un documento XML: Sintaxis](#cómo-se-escribe-un-documento-xml-sintaxis)
     - [Cuándo usar elementos vs atributos:](#cuándo-usar-elementos-vs-atributos)
-    - [Cuando usar etiqueta auto-cerrada `(/>)`:](#cuando-usar-etiqueta-auto-cerrada-)
+    - [Cuándo usar etiqueta auto-cerrada `(/>)`:](#cuándo-usar-etiqueta-auto-cerrada-)
     - [Atributo xml:space](#atributo-xmlspace)
     - [Tabulaciones](#tabulaciones)
   - [Cómo se crea un documento XML](#cómo-se-crea-un-documento-xml)
@@ -176,7 +176,7 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 </alumno>
 
 ```
-### Cuando usar etiqueta auto-cerrada `(/>)`:
+### Cuándo usar etiqueta auto-cerrada `(/>)`:
 ✅ El elemento no tiene contenido interno (solo atributos)
 ✅ Es más conciso y limpio
 
