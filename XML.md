@@ -166,6 +166,7 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 | ✅ Valores de control | ✅ Datos que necesitan sub-elementos |
 
 ```xml
+
 <!-- CORRECTO: Búsquedas eficientes -->
 <alumno idEscolar="123456" curso="1" ciclo="DAW">
     <nombre>Ana</nombre>           <!-- Contenido textual -->
