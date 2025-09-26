@@ -177,6 +177,7 @@ El atributo *standalone* es opcional y se utiliza para indicar si el documento X
 
 ```
 ### Cuándo usar etiqueta auto-cerrada `(/>)`:
+
 ✅ El elemento no tiene contenido interno (solo atributos)
 ✅ Es más conciso y limpio
 
