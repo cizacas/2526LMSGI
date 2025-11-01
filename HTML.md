@@ -51,7 +51,6 @@
       - [**Adobe XD**](#adobe-xd)
       - [**Sketch** (Solo macOS)](#sketch-solo-macos)
 
----
 
 ## 1. Estándares web. Versiones. Clasificación
 

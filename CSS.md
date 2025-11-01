@@ -86,6 +86,8 @@ p { margin: 10px; }     /* Todos los párrafos */
 div { border: 1px solid black; }  /* Todos los div */
 ```
 
+:pencil: [Ejemplo selectores](demo-selectores.html)
+
 ##### selector de clase
 * **Sintaxis**: Se escribe con un punto (`.`) seguido del nombre de la clase
 * **Especificidad**: Media (valor 10)
@@ -100,6 +102,9 @@ div { border: 1px solid black; }  /* Todos los div */
 .centrado { text-align: center; }
 .boton-principal { padding: 15px; }
 ```
+
+:pencil: [Ejemplo selectores de clases](demo-clases.html)
+
 ##### selector de identificador (ID)
 * **Sintaxis**: Se escribe con una almohadilla (`#`) seguida del nombre del ID
 * **Especificidad**: Alta (valor 100)
@@ -114,6 +119,8 @@ div { border: 1px solid black; }  /* Todos los div */
 #menu-navegacion { position: fixed; }
 #pie-pagina { background-color: #333; }
 ```
+
+:pencil:[Ejemplo selectores de identificadores](demo-ids.html)
 
 #### **Selector universal**
 * **Sintaxis**: Se escribe con un asterisco (*)
@@ -250,8 +257,43 @@ p::first-line {
     color: black;
 }
 ```
+:pencil: [Ejemplo de selectores avanzados](demo-selectores-avanzados.html)
+
 
 ### 5.4. Propiedades principales
+
+#### Unidades y medidas
+
+En CSS existen unidades absolutas y relativas. Para diseños adaptables se recomiendan principalmente las relativas.
+
+- Absolutas: `px`, `cm`, `mm`, `in`, `pt`, `pc` (no escalan con el viewport ni con la fuente del usuario).
+- Relativas a la tipografía: `em` (respecto al font-size del elemento), `rem` (respecto al font-size raíz, normalmente 16px), `ex`, `ch`, `lh`, `rlh`.
+- Relativas al viewport: `%` (respecto al contenedor), `vw` (1% del ancho de la ventana), `vh` (1% de la altura), `vmin`/`vmax` (mín./máx. entre vw y vh). Unidades modernas: `svh`/`lvh`/`dvh` (variantes de viewport en móviles).
+
+**💡Cuándo usar cada una**:
+- `rem` para tipografía y espaciados base (coherencia global y accesibilidad).
+- `em` para espaciados que deban escalar con el componente (dependen del tamaño de letra local).
+- `vw`/`vh`/`vmin`/`vmax` para bloques que deban responder al tamaño de la ventana.
+- `%` cuando el tamaño dependa del contenedor padre.
+
+**ℹ️ Funciones útiles para valores fluidos**:
+- `clamp(min, preferido, max)`: define un valor que crece de forma fluida pero limitado por un mínimo y un máximo.
+- `min(a, b, ...)` y `max(a, b, ...)`: toman el mínimo/máximo entre varias expresiones.
+
+Ejemplos:
+```css
+/* Tipografía fluida con límites */
+h1 { font-size: clamp(1.25rem, 2.2vw + 0.5rem, 2rem); }
+
+/* Espaciado base en rem (consistente en toda la app) */
+.card { padding: 1rem; margin-block: 1.5rem; }
+
+/* Un componente cuyo padding escala con su propia letra */
+.badge { font-size: 0.875rem; padding: 0.5em 1em; }
+
+/* Caja que ocupa un porcentaje del contenedor y limita su ancho máximo */
+.contenedor { width: 100%; max-width: 72rem; }
+```
 
 #### **Tipografía**
 
@@ -270,13 +312,13 @@ p::first-line {
     font-style: italic; /* normal, italic, oblique */
     
     /* Altura de línea */
-    line-height: 1.5; /* número, px, % */
+    line-height: 1.5; /* número (recomendado), px, em, rem, % */
     
     /* Espaciado entre letras */
-    letter-spacing: 2px;
+    letter-spacing: 2px; /* px, em, rem */
     
     /* Espaciado entre palabras */
-    word-spacing: 5px;
+    word-spacing: 5px; /* px, em, rem, % */
     
     /* Transformación de texto */
     text-transform: uppercase; /* lowercase, capitalize */
@@ -288,9 +330,17 @@ p::first-line {
     text-align: center; /* left, right, justify */
     
     /* Indentación */
-    text-indent: 20px;
+    text-indent: 20px; /* px, em, rem, % */
 }
 ```
+
+**📌Nota**:
+- Usa `line-height` sin unidad (1.4–1.7) para que herede bien y escale con el tamaño de fuente.
+- Define `tamaños` base en `rem` (accesible y consistente); usa `em` dentro de componentes que deban escalar localmente.
+- Evita px para `texto` cuando busques escalado/responsividad; preferible `rem`/`em`.
+- Para `letter-spacing`/`word-spacing`, `em` suele escalar mejor con el tamaño de letra.
+- Puedes emplear `clamp()` para `tipografía fluida` con límites seguros.
+- No fuerces el `tamaño base del html` con px; déjalo en `100%` y ajusta `escalas` con `rem`.
 
 #### **Colores y fondos**
 
@@ -298,10 +348,31 @@ p::first-line {
 .colores {
     /* Color de texto */
     color: #333333; /* hexadecimal */
-    color: rgb(51, 51, 51); /* RGB */
-    color: rgba(51, 51, 51, 0.8); /* RGBA con transparencia */
-    color: hsl(0, 0%, 20%); /* HSL */
-    color: hsla(0, 0%, 20%, 0.8); /* HSLA */
+    /* RGB = Red, Green, Blue (Rojo, Verde, Azul)
+            Sistema aditivo de luz (mezcla colores luz)
+            Cada canal va de 0 a 255 (o 0% a 100%)*/
+    color: rgb(51, 51, 51); /* RGB (sintaxis tradicional con comas) */
+    color: rgb(51 51 51); /* RGB (sintaxis moderna sin comas) */
+    /*RGBA = Red, Green, Blue, Alpha (Rojo, Verde, Azul, Transparencia)
+            A (Alpha/Transparencia): 0-1 (o 0%-100%)
+            0 = completamente transparente
+            1 = completamente opaco
+            0.5 = semi-transparente (50%) */
+    color: rgba(51, 51, 51, 0.8); /* RGBA con transparencia (tradicional) */
+    color: rgba(51 51 51 / 0.8); /* RGB con alpha (moderna) */
+    /* HSL = Hue, Saturation, Lightness (Tono, Saturación, Luminosidad)
+            Tono: 0-360 (rojo=0, verde=120, azul=240)
+            Saturación: 0%-100%
+            Luminosidad: 0%-100% */
+    color: hsl(0, 0%, 20%); /* HSL (tradicional) */
+    color: hsl(0 0% 20%); /* HSL (moderna) */
+    /* HSLA = Hue, Saturation, Lightness, Alpha (Tono, Saturación, Luminosidad, Transparencia)
+            A (Alpha/Transparencia): 0-1 (o 0%-100%)
+            0 = completamente transparente
+            1 = completamente opaco
+            0.5 = semi-transparente (50%) */
+    color: hsla(0, 0%, 20%, 0.8); /* HSLA (tradicional) */
+    color: hsla(0 0% 20% / 0.8); /* HSL con alpha (moderna) */
     
     /* Color de fondo */
     background-color: lightblue;
@@ -318,6 +389,13 @@ p::first-line {
 }
 ```
 
+**💡Nota**: La sintaxis moderna sin comas es más limpia y permite usar `/` para el `canal alpha*`. Ambas sintaxis funcionan en navegadores actuales. Para casos avanzados existen formatos como `oklch()` y `color-mix()`, pero los anteriores cubren la mayoría de necesidades.
+* `Alpha` es el canal de transparencia de un color en CSS.
+  * Valores: de 0 a 1 (o de 0% a 100%)
+    * 0 (o 0%) = completamente transparente (invisible)
+    * 1 (o 100%) = completamente opaco (sin transparencia)
+    * 0.5 (o 50%) = semi-transparente (50% de opacidad)
+
 #### **Espaciado**
 
 ```css
@@ -325,7 +403,17 @@ p::first-line {
     /* Margen exterior */
     margin: 20px; /* todos los lados */
     margin: 10px 20px; /* vertical horizontal */
+    /* Equivale a: */
+    /* margin-top: 10px; */
+    /* margin-right: 20px; */
+    /* margin-bottom: 10px; */
+    /* margin-left: 20px; */
     margin: 10px 15px 20px 25px; /* arriba derecha abajo izquierda */
+    /* Equivale a: */
+    /* margin-top: 10px; */
+    /* margin-right: 15px; */
+    /* margin-bottom: 20px; */
+    /* margin-left: 25px; */
     margin-top: 10px;
     margin-right: 15px;
     margin-bottom: 20px;
@@ -334,17 +422,82 @@ p::first-line {
     /* Relleno interior */
     padding: 15px;
     padding: 10px 20px;
+    /* Equivale a: */
+    /* padding-top: 10px; */
+    /* padding-right: 20px; */
+    /* padding-bottom: 10px; */
+    /* padding-left: 20px; */
     padding: 5px 10px 15px 20px;
+    /* Equivale a: */
+    /* padding-top: 5px; */
+    /* padding-right: 10px; */
+    /* padding-bottom: 15px; */
+    /* padding-left: 20px; */
     padding-top: 5px;
     padding-right: 10px;
     padding-bottom: 15px;
     padding-left: 20px;
 }
 ```
+#### **propiedades personalizadas (variables CSS)**
+Las variables CSS permiten declarar valores reutilizables (colores, espaciados, tamaños) que heredan y respetan la cascada.
+
+* Definición: cualquier propiedad que empiece por --
+* Uso: función var(--nombre, [fallback])
+
+```css
+/* Defínelas en :root para que estén disponibles en todo el documento */
+:root {
+  --brand: #4a90e2;
+  --bg: #ffffff;
+  --fg: #222222;
+
+  /* Espaciado fluido con clamp() */
+  --space-1: clamp(0.5rem, 1vw, 0.75rem);
+  --space-2: clamp(0.75rem, 1.5vw, 1rem);
+  --radius: 10px;
+}
+
+/* Úsalas con var() */
+.boton {
+  background: var(--brand);
+  color: var(--fg);
+  padding: var(--space-2);
+  border-radius: var(--radius);
+}
+
+/* Fallback si la variable no existe o es inválida */
+.caja {
+  padding: var(--space-3, 1.25rem);
+}
+
+/* Ámbito y cascada: puedes redefinirlas por sección o tema */
+.tema-oscuro {
+  --bg: #111;
+  --fg: #eee;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Ajustes por breakpoint: revaloras la variable una vez */
+@media (min-width: 768px) {
+  :root { --space-2: 1.25rem; }
+}
+
+/* En cálculos: combinables con calc() */
+.card {
+  margin-block: calc(var(--space-1) * 2);
+}
+
+```
 
 ### 5.5. Modelo de caja (Box Model)
 
 Todos los elementos HTML se representan como cajas rectangulares:
+
+![modeloCajas](img/modeloCajas.jpg)
 
 ```css
 .caja {
@@ -354,6 +507,11 @@ Todos los elementos HTML se representan como cajas rectangulares:
     
     /* Relleno */
     padding: 20px;
+    /* Equivale a los cuatro rellenos: */
+    /* padding-top: 20px; */
+    /* padding-right: 20px; */
+    /* padding-bottom: 20px; */
+    /* padding-left: 20px; */
     
     /* Borde */
     border: 2px solid black;
@@ -364,6 +522,11 @@ Todos los elementos HTML se representan como cajas rectangulares:
     
     /* Margen */
     margin: 15px;
+    /* Equivale a los cuatro márgenes: */
+    /* margin-top: 15px; */
+    /* margin-right: 15px; */
+    /* margin-bottom: 15px; */
+    /* margin-left: 15px; */
     
     /* Control del modelo de caja */
     box-sizing: border-box; /* content-box (default) */
@@ -374,7 +537,29 @@ Todos los elementos HTML se representan como cajas rectangulares:
 - `content-box`: width/height = solo contenido
 - `border-box`: width/height = contenido + padding + border
 
+:pencil: [Ejemplo del modelo de caja](demo-modelo-caja.html)
+
+*ℹ️Por qué a veces “no es responsivo”*
+* Anchos/altos en px: la caja no se adapta al viewport.
+* content-box: el padding y el borde inflan el tamaño total y te obliga a hacer cuentas.
+
 ### 5.6. Flexbox y Grid
+
+`Flexbox` y `Grid` son modelos de distribución(layout)que se aplican sobre cajas del box model.
+* **Box model**: define cómo se calcula el tamaño de cada elemento (content, padding, border, margin) y cómo influye box-sizing.
+* **Flexbox y Grid**: definen cómo se colocan y reparten espacio esas cajas dentro de un contenedor (uno‑dimensional en Flex, bidimensional en Grid).
+
+**💡Uso combinado de Flexbox y Grid**
+`Flexbox` y `Grid` son complementarios, no competidores. Cada uno tiene sus fortalezas:
+* `Grid` - Para layouts bidimensionales (filas Y columnas)
+  * Estructura principal de la página
+  * Diseños complejos que necesitan control en 2D
+  * Galerías, dashboards, layouts de múltiples columnas
+* `Flexbox` - Para layouts unidimensionales (fila O columna)
+  * Componentes individuales dentro del grid
+  * Navegación, barras de herramientas
+  * Alineación de elementos en una dirección
+  * Centrado vertical/horizontal
 
 #### **Flexbox (Diseño flexible)**
 
@@ -382,37 +567,65 @@ Todos los elementos HTML se representan como cajas rectangulares:
 .contenedor-flex {
     display: flex;
     
-    /* Dirección principal */
-    flex-direction: row; /* column, row-reverse, column-reverse */
+    /* Dirección principal - Define en qué dirección se colocan los elementos */
+    flex-direction: row; 
+    /* row: horizontal de izquierda a derecha (por defecto)
+       column: vertical de arriba a abajo
+       row-reverse: horizontal de derecha a izquierda
+       column-reverse: vertical de abajo a arriba */
     
-    /* Justificación en eje principal */
-    justify-content: space-between; /* flex-start, flex-end, center, space-around, space-evenly */
+    /* Justificación en eje principal - Distribuye el espacio sobrante horizontalmente (si flex-direction: row) */
+    justify-content: space-between; 
+    /* flex-start: agrupa al inicio
+       flex-end: agrupa al final
+       center: agrupa en el centro
+       space-between: espacio entre elementos (sin espacio en los extremos)
+       space-around: espacio alrededor de cada elemento
+       space-evenly: espacio igual entre todos los elementos y los extremos */
     
-    /* Alineación en eje transversal */
-    align-items: center; /* flex-start, flex-end, stretch, baseline */
+    /* Alineación en eje transversal - Alinea verticalmente (si flex-direction: row) */
+    align-items: center; 
+    /* flex-start: alinea arriba
+       flex-end: alinea abajo
+       center: alinea en el centro
+       stretch: estira para ocupar toda la altura
+       baseline: alinea según la línea base del texto */
     
-    /* Permitir salto de línea */
-    flex-wrap: wrap; /* nowrap, wrap-reverse */
+    /* Permitir salto de línea - Controla si los elementos pueden pasar a nueva línea */
+    flex-wrap: wrap; 
+    /* nowrap: todos en una línea (por defecto)
+       wrap: permite salto a siguiente línea
+       wrap-reverse: permite salto pero en dirección inversa */
     
     /* Espacio entre elementos */
     gap: 20px;
 }
 
 .elemento-flex {
-    /* Factor de crecimiento */
+    /* Factor de crecimiento - Cuánto puede crecer respecto a otros elementos */
     flex-grow: 1;
+    /* 0: no crece (por defecto)
+       1: crece igual que otros elementos con flex-grow: 1
+       2: crece el doble que elementos con flex-grow: 1 */
     
-    /* Factor de reducción */
+    /* Factor de reducción - Cuánto puede encogerse si falta espacio */
     flex-shrink: 1;
+    /* 0: no se encoge
+       1: se encoge igual que otros elementos (por defecto)
+       2: se encoge el doble que elementos con flex-shrink: 1 */
     
-    /* Base inicial */
+    /* Base inicial - Tamaño inicial antes de distribuir el espacio sobrante */
     flex-basis: 200px;
+    /* auto: usa el width/height del elemento (por defecto)
+       200px: tamaño fijo inicial
+       0: ignora el tamaño del contenido */
     
-    /* Abreviación */
+    /* Abreviación - Combina grow, shrink y basis en una propiedad */
     flex: 1 1 200px; /* grow shrink basis */
     
-    /* Alineación individual */
+    /* Alineación individual - Sobrescribe align-items para este elemento específico */
     align-self: flex-end;
+    /* auto, flex-start, flex-end, center, stretch, baseline */
 }
 ```
 
@@ -422,39 +635,110 @@ Todos los elementos HTML se representan como cajas rectangulares:
 .contenedor-grid {
     display: grid;
     
-    /* Definir columnas */
-    grid-template-columns: 1fr 2fr 1fr; /* fracciones */
-    grid-template-columns: repeat(3, 1fr); /* repetir */
-    grid-template-columns: 200px auto 150px; /* tamaños fijos y automático */
+     /* Definir columnas - Establece el ancho de cada columna */
+     grid-template-columns: 1fr 2fr 1fr; 
+     /* fracciones (fr): unidad flexible que distribuye el espacio disponible
+         1fr 2fr 1fr: la columna del medio tiene el doble de ancho que las laterales
+         Ejemplo: si hay 400px disponibles → 100px 200px 100px */
     
-    /* Definir filas */
-    grid-template-rows: 100px auto 50px;
+     grid-template-columns: repeat(3, 1fr); 
+     /* repeat(cantidad, tamaño): repite el patrón
+         repeat(3, 1fr): crea 3 columnas iguales
+         repeat(auto-fit, minmax(200px, 1fr)): columnas responsivas */
     
-    /* Espacio entre celdas */
-    gap: 20px; /* row-gap, column-gap */
+     grid-template-columns: 200px auto 150px; 
+     /* 200px: ancho fijo
+         auto: ocupa el espacio restante
+         150px: ancho fijo
+         Combina tamaños fijos y flexibles */
     
-    /* Areas nombradas */
+     /* Definir filas - Establece la altura de cada fila */
+     grid-template-rows: 100px auto 50px;
+     /* 100px: altura fija para la primera fila
+         auto: altura según el contenido de la segunda fila
+         50px: altura fija para la tercera fila */
+    
+     /* Espacio entre celdas - Crea separación entre elementos del grid */
+     gap: 20px; 
+     /* gap: 20px: espacio igual horizontal y vertical
+         row-gap: 20px: solo espacio vertical entre filas
+         column-gap: 20px: solo espacio horizontal entre columnas
+         gap: 20px 10px: 20px vertical, 10px horizontal */
+    
+     /* Áreas nombradas - Define zonas con nombres para posicionar elementos fácilmente */
     grid-template-areas: 
         "header header header"
         "sidebar main main"
         "footer footer footer";
+     /* Cada string representa una fila
+         Cada palabra representa una celda
+         header ocupa 3 columnas en la primera fila
+         sidebar ocupa 1 columna, main ocupa 2 columnas en la segunda fila
+         footer ocupa 3 columnas en la tercera fila
+         Usa el punto (.) para celdas vacías */
 }
 
 .elemento-grid {
-    /* Posicionamiento por líneas */
-    grid-column: 1 / 3; /* desde línea 1 a 3 */
+     /* Posicionamiento por líneas - Usa las líneas que separan las columnas/filas */
+     grid-column: 1 / 3; 
+     /* desde línea 1 a 3: ocupa las columnas 1 y 2
+         Las líneas se numeran desde 1 (inicio) hasta n+1 (final)
+         grid-column: 2 / -1: desde columna 2 hasta la última */
+    
     grid-row: 2 / 4;
+     /* desde línea 2 a 4: ocupa las filas 2 y 3 */
     
-    /* Posicionamiento por span */
-    grid-column: span 2; /* ocupa 2 columnas */
+     /* Posicionamiento por span - Indica cuántas celdas ocupa el elemento */
+     grid-column: span 2; 
+     /* span 2: ocupa 2 columnas desde donde esté posicionado
+         No importa la posición inicial, solo cuánto se extiende
+         grid-column: 2 / span 3: empieza en columna 2 y ocupa 3 columnas */
+    
     grid-row: span 1;
+     /* span 1: ocupa solo 1 fila (valor por defecto) */
     
-    /* Posicionamiento por área */
+     /* Posicionamiento por área - Asigna el elemento a un área nombrada */
     grid-area: header;
+     /* header: coloca el elemento en el área llamada "header"
+         Debe coincidir con un nombre definido en grid-template-areas
+         También puede usarse como: grid-area: fila-inicio / col-inicio / fila-fin / col-fin */
 }
 ```
 
----
+### 5.7. Media querys
+
+Las media queries permiten adaptar estilos a características del dispositivo o del usuario (tamaño de la ventana, densidad de píxeles, modo oscuro, preferencias de movimiento, etc.). Son el complemento perfecto a técnicas “intrínsecamente responsivas” como grid auto-fit/minmax, flex-wrap, clamp() y unidades relativas.
+
+**📌¿Cuándo utilizarlas?**
+- Para ajustes tipográficos/espaciado por rangos (más aire en escritorio, más compacto en móvil).
+- Para cambios de layout más marcados (pasar de 1 a 2-3 columnas, reorganizar navegación).
+- Para mejorar usabilidad/accesibilidad (aumentar tamaños táctiles, respetar preferencias como reduced-motion).
+- Siempre con enfoque mobile-first y pocas reglas bien escogidas.
+
+Ejemplo básico (mobile-first) con Grid y un ajuste para la navegación Flex:
+
+```css
+/* Base móvil: 1 columna */
+.container { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+/* ≥48em (~768px): 2 columnas */
+@media (min-width: 48em) {
+    .container { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ≥75em (~1200px): 3 columnas */
+@media (min-width: 75em) {
+    .container { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ≤30em (~480px): navegación en columna usando Flex */
+@media (max-width: 30em) {
+    .nav { display: flex; flex-direction: column; gap: 0.5rem; }
+}
+```
+
+:pencil: [Ejemplo modelo de cajas responsivo](demo-modelo-cajas-responsivo.html)
+
 
 ## 6. Validación de documentos HTML y CSS
 
@@ -573,47 +857,6 @@ La **validación** es el proceso de verificar que el código HTML y CSS cumple c
     "css.lint.emptyRules": "warning"
 }
 ```
-
-#### **Linters en línea de comandos**
-
-```bash
-# HTMLHint
-npm install -g htmlhint
-htmlhint index.html
-
-# stylelint para CSS
-npm install -g stylelint
-stylelint styles.css
-```
-
-#### **Herramientas de construcción**
-
-```javascript
-// Webpack con html-webpack-plugin
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-module.exports = {
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-                removeEmptyAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true,
-            }
-        })
-    ]
-};
-```
-
----
 
 ## 7. Lenguajes de marcas para la sindicación de contenidos
 
@@ -883,299 +1126,8 @@ JSON Feed es un formato moderno basado en JSON, más simple para desarrolladores
 - Priorizas la simplicidad
 - Trabajas principalmente con JavaScript
 
-#### **Implementación práctica**
 
-```html
-<!-- Enlace a feeds en HTML -->
-<head>
-    <link rel="alternate" type="application/rss+xml" 
-          title="RSS Feed" href="/feed.rss">
-    <link rel="alternate" type="application/atom+xml" 
-          title="Atom Feed" href="/feed.atom">
-    <link rel="alternate" type="application/json" 
-          title="JSON Feed" href="/feed.json">
-</head>
-```
-
-```javascript
-// Consumir JSON Feed con JavaScript
-fetch('/feed.json')
-    .then(response => response.json())
-    .then(feed => {
-        console.log(`Feed: ${feed.title}`);
-        feed.items.forEach(item => {
-            console.log(`- ${item.title}: ${item.url}`);
-        });
-    })
-    .catch(error => console.error('Error:', error));
-```
-
----
-
-## 8. Ejercicios prácticos
-
-### **Ejercicio 1: Estructura HTML completa**
-
-Crea una página web completa que incluya:
-
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Página de ejemplo para práctica HTML">
-    <title>Mi Primera Página Web</title>
-    <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-    <header>
-        <h1>Mi Blog Personal</h1>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#articulos">Artículos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="inicio">
-            <h2>Bienvenido</h2>
-            <p>Este es mi blog personal donde comparto mis experiencias...</p>
-        </section>
-
-        <section id="articulos">
-            <h2>Últimos Artículos</h2>
-            <article>
-                <h3>Mi primer artículo</h3>
-                <p>Contenido del artículo...</p>
-                <time datetime="2025-09-26">26 de septiembre de 2025</time>
-            </article>
-        </section>
-    </main>
-
-    <aside>
-        <h3>Sobre mí</h3>
-        <p>Información personal...</p>
-    </aside>
-
-    <footer>
-        <p>&copy; 2025 Mi Blog Personal</p>
-    </footer>
-</body>
-</html>
-```
-
-### **Ejercicio 2: Formulario completo con validación**
-
-```html
-<form action="/procesar-formulario" method="post">
-    <fieldset>
-        <legend>Información Personal</legend>
-        
-        <div>
-            <label for="nombre">Nombre completo *</label>
-            <input type="text" id="nombre" name="nombre" required>
-        </div>
-        
-        <div>
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        
-        <div>
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}">
-        </div>
-        
-        <div>
-            <label for="fecha-nacimiento">Fecha de nacimiento</label>
-            <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
-        </div>
-    </fieldset>
-    
-    <fieldset>
-        <legend>Preferencias</legend>
-        
-        <div>
-            <label for="pais">País</label>
-            <select id="pais" name="pais">
-                <option value="">Selecciona un país</option>
-                <option value="es">España</option>
-                <option value="fr">Francia</option>
-                <option value="it">Italia</option>
-            </select>
-        </div>
-        
-        <div>
-            <p>Intereses:</p>
-            <input type="checkbox" id="tecnologia" name="intereses" value="tecnologia">
-            <label for="tecnologia">Tecnología</label>
-            
-            <input type="checkbox" id="deportes" name="intereses" value="deportes">
-            <label for="deportes">Deportes</label>
-            
-            <input type="checkbox" id="arte" name="intereses" value="arte">
-            <label for="arte">Arte</label>
-        </div>
-    </fieldset>
-    
-    <button type="submit">Enviar</button>
-    <button type="reset">Limpiar</button>
-</form>
-```
-
-### **Ejercicio 3: CSS con Flexbox y Grid**
-
-```css
-/* Estilos generales */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Layout principal con Grid */
-.contenedor-principal {
-    display: grid;
-    grid-template-areas: 
-        "header header"
-        "nav nav"
-        "main aside"
-        "footer footer";
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: auto auto 1fr auto;
-    min-height: 100vh;
-    gap: 20px;
-    padding: 20px;
-}
-
-header {
-    grid-area: header;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    border-radius: 10px;
-}
-
-nav {
-    grid-area: nav;
-}
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    gap: 2rem;
-    background: #f4f4f4;
-    padding: 1rem;
-    border-radius: 5px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 3px;
-    transition: background-color 0.3s;
-}
-
-nav a:hover {
-    background-color: #667eea;
-    color: white;
-}
-
-main {
-    grid-area: main;
-    background: white;
-    padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-aside {
-    grid-area: aside;
-    background: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 5px;
-    height: fit-content;
-}
-
-footer {
-    grid-area: footer;
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 5px;
-}
-
-/* Componentes responsivos */
-@media (max-width: 768px) {
-    .contenedor-principal {
-        grid-template-areas: 
-            "header"
-            "nav"
-            "main"
-            "aside"
-            "footer";
-        grid-template-columns: 1fr;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
-```
-
-### **Ejercicio 4: Feed RSS**
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-    <channel>
-        <title>Mi Blog de Desarrollo Web</title>
-        <description>Artículos sobre HTML, CSS y JavaScript</description>
-        <link>https://miblog.com</link>
-        <language>es-ES</language>
-        <pubDate>Wed, 26 Sep 2025 12:00:00 GMT</pubDate>
-        <lastBuildDate>Wed, 26 Sep 2025 12:00:00 GMT</lastBuildDate>
-        
-        <item>
-            <title>Guía completa de CSS Grid</title>
-            <description>Aprende a usar CSS Grid para crear layouts complejos</description>
-            <link>https://miblog.com/css-grid-guia</link>
-            <guid>https://miblog.com/css-grid-guia</guid>
-            <pubDate>Wed, 26 Sep 2025 10:00:00 GMT</pubDate>
-            <category>CSS</category>
-        </item>
-        
-        <item>
-            <title>JavaScript ES2025: Nuevas características</title>
-            <description>Descubre las últimas funcionalidades de JavaScript</description>
-            <link>https://miblog.com/javascript-es2025</link>
-            <guid>https://miblog.com/javascript-es2025</guid>
-            <pubDate>Tue, 25 Sep 2025 15:30:00 GMT</pubDate>
-            <category>JavaScript</category>
-        </item>
-    </channel>
-</rss>
-```
-
----
-
-## 9. Referencias
+## 8. Referencias
 
 ### **Documentación oficial**
 - [MDN Web Docs](https://developer.mozilla.org/) - Referencia completa de tecnologías web
@@ -1197,11 +1149,6 @@ footer {
 - [Visual Studio Code](https://code.visualstudio.com/) - Editor de código
 - [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) - Herramientas de desarrollo
 - [Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools) - Herramientas de Firefox
-
-### **Frameworks y librerías**
-- [Bootstrap](https://getbootstrap.com/) - Framework CSS
-- [Tailwind CSS](https://tailwindcss.com/) - Framework utility-first
-- [Bulma](https://bulma.io/) - Framework CSS moderno
 
 ### **Sindicación de contenidos**
 - [RSS 2.0 Specification](https://www.rssboard.org/rss-specification) - Especificación RSS

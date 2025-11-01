@@ -1,0 +1,154 @@
+/* 1) Normalizamos el modelo de caja para layout predecible */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 2) Tipografía y escalado fluido */
+:root {
+  --space-1: clamp(0.5rem, 1vw, 0.75rem);
+  --space-2: clamp(0.75rem, 1.5vw, 1rem);
+  --space-3: clamp(1rem, 2vw, 1.5rem);
+  --radius: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: #222;
+}
+
+h1 {
+  font-size: clamp(1.25rem, 2.2vw + 0.5rem, 2rem); /* 4) Texto fluido */
+  margin: 0 0 var(--space-2);
+}
+
+/* 3) Contenedor fluido con límites y padding fluido */
+.contenedor {
+  width: 100%;
+  max-width: 72rem; /* ~1152px */
+  margin: 0 auto;
+  padding: var(--space-3);
+}
+
+/* Extra: Cabecera con Flexbox para ver combinación Grid + Flex */
+.barra-flex {
+  display: flex; /* Flexbox en cabecera */
+  justify-content: space-between; /* Espacia marca y navegación */
+  align-items: center; /* Centra verticalmente */
+  gap: var(--space-1);
+  flex-wrap: wrap; /* Permite bajar los enlaces en pantallas estrechas */
+  padding: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-2);
+  background: #f9fbff;
+  border: 1px solid #bcd;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.barra-flex .marca {
+  font-weight: 600;
+  color: #234;
+}
+
+.nav-flex {
+  display: flex; /* Los enlaces se distribuyen en línea */
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.nav-flex a {
+  text-decoration: none;
+  color: #245;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.nav-flex a:hover {
+  background: #eaf1ff;
+  border-color: #bcd;
+}
+
+/* 3) Rejilla que se adapta con auto-fit + minmax (Grid) */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-2); /* 4) Gap fluido */
+  align-items: start;
+}
+
+/* Caja basada en el modelo de cajas clásico, pero con border-box global */
+.caja {
+  background: #f6f9ff;
+  border: 2px solid #4a90e2;   /* Borde (parte del box model) */
+  border-radius: var(--radius);
+  padding: var(--space-2);     /* Padding (parte del box model) */
+  /* El margin separa las cajas del resto del contenido (fuera del tamaño de la caja) */
+}
+
+.caja h3 {
+  margin: 0 0 var(--space-1) 0;
+  font-size: clamp(1rem, 1.2vw + 0.6rem, 1.25rem);
+}
+
+.caja-media {
+  position: relative;
+  aspect-ratio: 16 / 9;  /* Mantiene proporción sin fijar altura rígida */
+  overflow: hidden;
+  border-radius: calc(var(--radius) - 2px);
+  margin-bottom: var(--space-1);
+  background: #dde7fb;
+}
+
+.caja-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 5) Imagen se recorta/ajusta sin deformarse */
+  display: block;
+}
+
+.nota {
+  background: #fff;
+  border: 1px dashed #bcd;
+  padding: var(--space-1);
+  border-radius: calc(var(--radius) - 4px);
+  color: #334;
+  font-size: 0.95rem;
+}
+
+footer {
+  margin-top: var(--space-3);
+  color: #566;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Media queries: pequeños retoques responsivos por rangos */
+/* ≥48em ≈ 768px: más aire en desktop */
+@media (min-width: 48em) {
+  .rejilla {
+    gap: var(--space-3);
+  }
+  .nav-flex a {
+    padding: 0.45rem 0.8rem;
+  }
+}
+
+/* ≥75em ≈ 1200px: cards algo más anchas en pantallas grandes */
+@media (min-width: 75em) {
+  .rejilla {
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  }
+}
+
+/* ≤30em ≈ 480px: nav apilada y cajas más compactas */
+@media (max-width: 30em) {
+  .barra-flex {
+    gap: 0.4rem;
+  }
+  .nav-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .caja {
+    padding: var(--space-1);
+  }
+}

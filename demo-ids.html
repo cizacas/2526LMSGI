@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo selector de ID</title>
+  <style>
+    /* Reglas del ejemplo (las mismas que en CSS.md) */
+    #encabezado-principal { font-size: 32px; }
+    #menu-navegacion { position: fixed; }
+    #pie-pagina { background-color: #333; }
+  </style>
+</head>
+<body>
+  <header id="encabezado-principal">Encabezado principal</header>
+
+  <nav id="menu-navegacion">
+    <a href="#">Inicio</a> |
+    <a href="#">Artículos</a> |
+    <a href="#">Contacto</a>
+  </nav>
+
+  <main>
+    <p>Contenido de la página para observar el comportamiento del menú fijo.</p>
+    <p style="height: 600px;"></p>
+  </main>
+
+  <footer id="pie-pagina">
+    <p>Pie de página</p>
+  </footer>
+</body>
+</html>

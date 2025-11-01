@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo modelo de cajas responsivo</title>
+  <!--
+    Cómo verlo
+    - Abre este archivo en el navegador (doble clic o Live Server).
+    - Reduce y amplía el ancho de la ventana.
+    Qué observar
+    - Las "cajas" se reacondicionan en más/menos columnas según el ancho (grid auto-fit + minmax).
+    - El padding/gap y tamaños de texto se ajustan suavemente (clamp()).
+    - La cabecera usa Flexbox para espaciar marca y navegación (flex-wrap para apilar en pantallas estrechas).
+    - Se añaden media queries para retoques por rangos (más gap en desktop, nav apilada en móvil, etc.).
+  - Las imágenes no desbordan: se escalan en el contenedor .caja-media (max-width:100%; height:auto; object-fit:cover).
+
+    Por qué ahora se adapta
+    1) box-sizing: border-box global
+       - El ancho declarado incluye padding y borde, facilitando cálculos en layouts fluidos.
+    2) Contenedor fluido con límites
+       - width:100% + max-width: el layout crece hasta un máximo razonable y centra el contenido.
+    3) Grid responsivo sin media queries estrictas
+       - repeat(auto-fit, minmax(min(280px, 100%), 1fr)) crea columnas que colapsan o aparecen según el espacio.
+    4) Espaciado y tipografía fluidos
+       - clamp() usa un mínimo, un valor preferido dependiente del viewport y un máximo.
+   5) Medios fluidos (.caja-media)
+     - img/video escalan dentro de .caja-media y no rompen el layout.
+   6) Flexbox en la cabecera
+     - Distribuye marca y navegación, y con flex-wrap se adapta en pantallas estrechas.
+   7) Media queries (retoques finales)
+     - Pocos breakpoints para ajustar spacing y comportamiento en móvil/desktop.
+
+    ¿Qué es clamp()?
+    - Sintaxis: clamp(min, preferido, max)
+    - Devuelve un valor fluido (generalmente con vw) limitado entre un mínimo y un máximo.
+      Ej.: font-size: clamp(1.25rem, 2.2vw + 0.5rem, 2rem)
+          • Nunca baja de 1.25rem (mínimo)
+          • Crece con el viewport usando 2.2vw + 0.5rem (preferido)
+          • Nunca supera 2rem (máximo)
+  -->
+  <link rel="stylesheet" href="css/demo-modelo-cajas-responsivo.css">
+</head>
+<body>
+  <div class="contenedor">
+    <header class="barra-flex" aria-label="Barra de navegación">
+      <div class="marca">Demo responsive</div>
+      <nav class="nav-flex" aria-label="Navegación principal">
+        <a href="#grid">Grid</a>
+        <a href="#flex">Flex</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <h1>Modelo de cajas responsivo (border-box + grid + flex)</h1>
+
+  <div class="rejilla" id="grid">
+      <article class="caja">
+        <div class="caja-media">
+          <img src="https://picsum.photos/800/450?random=1" alt="Imagen ilustrativa">
+        </div>
+        <h3>Caja 1</h3>
+        <p>Esta caja usa padding y borde. Gracias a box-sizing:border-box, el ancho total ya los incluye.</p>
+        <p class="nota">Se adapta porque la columna se define con minmax(..., 1fr) y la imagen es fluida.</p>
+      </article>
+
+      <article class="caja">
+        <div class="caja-media">
+          <img src="https://picsum.photos/800/450?random=2" alt="Imagen ilustrativa">
+        </div>
+        <h3>Caja 2</h3>
+        <p>Al reducir el viewport, las columnas colapsan a 1 y esta caja ocupa el 100% del ancho disponible.</p>
+        <p class="nota">El gap y las fuentes usan clamp(), por eso el espaciado tipográfico es progresivo.</p>
+      </article>
+
+        <article class="caja">
+        <div class="caja-media">
+          <img src="https://picsum.photos/800/450?random=3" alt="Imagen ilustrativa">
+        </div>
+        <h3>Caja 3</h3>
+        <p>El contenedor está limitado por max-width, así la línea no se hace demasiado ancha en pantallas grandes.</p>
+        <p class="nota">El layout sigue siendo fluido: width:100% + max-width + centrado automático.</p>
+      </article>
+
+      <article class="caja">
+        <div class="caja-media">
+          <img src="https://picsum.photos/800/450?random=4" alt="Imagen ilustrativa">
+        </div>
+        <h3>Caja 4</h3>
+        <p>El modelo de caja clásico (contenido + padding + border + margin) se mantiene, pero la normalización facilita las cuentas.</p>
+        <p class="nota">border-box evita que el padding/borde “inflen” el ancho total declarado.</p>
+      </article>
+
+      <article class="caja">
+        <div class="caja-media">
+          <img src="https://picsum.photos/800/450?random=5" alt="Imagen ilustrativa">
+        </div>
+        <h3>Caja 5</h3>
+        <p>Las imágenes nunca desbordan gracias a object-fit: cover y a que su contenedor usa aspect-ratio.</p>
+        <p class="nota">Así se preserva la proporción y el layout no “salta”.</p>
+      </article>
+
+      <article class="caja">
+        <div class="caja-media">
+          <img src="https://picsum.photos/800/450?random=6" alt="Imagen ilustrativa">
+        </div>
+        <h3>Caja 6</h3>
+        <p>Sin media queries complejas: auto-fit + minmax ya proporciona reflow natural de columnas.</p>
+        <p class="nota">Puedes añadir @media si necesitas cambios más drásticos de diseño.</p>
+      </article>
+    </div>
+
+    <footer>
+      Consejo: combina grid/flex, unidades relativas (%, vw, rem), clamp() y border-box para UIs adaptables.
+    </footer>
+  </div>
+</body>
+</html>

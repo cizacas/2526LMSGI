@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo de selectores (universal, atributos, combinadores, pseudo-clases y pseudo-elementos)</title>
+  <style>
+    /* Selector universal (como en CSS.md) */
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Un pequeño ajuste para legibilidad general (no interfiere con los ejemplos) */
+    body { padding: 16px; }
+
+    /* Selectores de atributo (como en CSS.md) */
+    input[required] {
+      border: 2px solid red;
+    }
+
+    input[type="email"] {
+      background-color: lightblue;
+    }
+
+    /* a[href^="https"] { color: green; }  // Nota: puede verse sobrescrito por pseudo-clases de enlaces más abajo */
+
+    img[src$=".jpg"] {
+      border: 1px solid gray;
+    }
+
+    /* Selectores de combinación (como en CSS.md) */
+    /* Descendiente */
+    .contenedor-descendiente p {
+      color: blue;
+    }
+
+    /* Hijo directo */
+    ul.demostracion-hijo > li {
+      list-style: none;
+    }
+
+    /* Hermano adyacente */
+    h1 + p {
+      font-weight: bold;
+    }
+
+    /* Hermanos generales */
+    h1 ~ p {
+      margin-top: 10px;
+    }
+
+    /* Pseudo-clases (como en CSS.md) */
+    a:link { color: blue; }
+    a:visited { color: purple; }
+    a:hover { color: red; }
+    a:active { color: orange; }
+
+    input:focus {
+      outline: 2px solid blue;
+    }
+
+    input:valid {
+      border-color: green;
+    }
+
+    input:invalid {
+      border-color: red;
+    }
+
+    .lista-estructural li:first-child {
+      font-weight: bold;
+    }
+
+    .lista-estructural li:last-child {
+      margin-bottom: 0;
+    }
+
+    .lista-estructural li:nth-child(odd) {
+      background-color: #f0f0f0;
+    }
+
+    .lista-estructural li:nth-child(3n) {
+      color: red;
+    }
+
+    /* Pseudo-elementos (como en CSS.md) */
+    .icono::before {
+      content: "★";
+      color: gold;
+      margin-right: 6px;
+    }
+
+    .enlace-externo::after {
+      content: " ↗";
+    }
+
+    .parrafo-decorado::first-letter {
+      font-size: 2em;
+      float: left;
+      line-height: 1;
+      padding-right: 4px;
+    }
+
+    .parrafo-decorado::first-line {
+      font-weight: bold;
+    }
+
+    ::selection {
+      background-color: yellow;
+      color: black;
+    }
+
+    /* Ayudas visuales */
+    section { margin-bottom: 24px; }
+    section > h2 { margin-bottom: 8px; }
+    .box { border: 1px dashed #ccc; padding: 12px; }
+  </style>
+</head>
+<body>
+  <!--
+    Cómo verlo
+    
+    1) Abre este archivo en el navegador (doble clic desde el Explorador de archivos en Windows
+       o desde VS Code con "Open with Live Server" si usas esa extensión).
+
+    2) Interacciones a probar:
+       - Enlaces: pasa el ratón para :hover (rojo), haz clic para :active (naranja),
+         y revisa el color de enlaces visitados :visited (morado) y no visitados :link (azul).
+       - Formulario: enfoca un input para :focus (outline azul). Escribe un email válido
+         en el campo de tipo email para ver :valid (borde verde) y uno inválido para :invalid (borde rojo).
+         Los inputs con [required] muestran borde rojo si están vacíos/invalid.
+       - Selección de texto: selecciona texto con el ratón para ver ::selection (fondo amarillo, texto negro).
+       - Combinadores: el primer párrafo tras el H1 se pone en negrita por h1 + p;
+         los siguientes párrafos hermanos de H1 tienen margen-top por h1 ~ p.
+         Dentro de "Selectores de combinación":
+           · .contenedor-descendiente p (color azul por selector descendiente div p)
+           · ul.demostracion-hijo > li (sin viñetas por hijo directo)
+       - Atributos: input[required] (borde rojo), input[type="email"] (fondo celeste),
+         img[src$=".jpg"] (borde gris). Nota: a[href^="https"] podría verse sobrescrito por las
+         pseudo‑clases de enlace definidas más abajo.
+       - Pseudo‑elementos: .icono::before añade un "★" dorado; .enlace-externo::after añade "↗";
+         .parrafo-decorado aplica ::first-letter (capitular) y ::first-line (negrita).
+  -->
+  <h1>Demostración de selectores</h1>
+  <p>Este párrafo es hermano adyacente de H1 (se pone en negrita por h1 + p).</p>
+  <p>Este párrafo es hermano general de H1 (toma margen-top por h1 ~ p).</p>
+
+  <section>
+    <h2>Selector universal *</h2>
+    <div class="box">
+      <p>Se han reseteado márgenes/paddings y se aplica la fuente global a todo el documento.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Selectores de atributo</h2>
+    <div class="box">
+      <form>
+        <div style="margin-bottom: 8px;">
+          <label for="email">Email (required, type=email): </label>
+          <input id="email" name="email" type="email" required placeholder="nombre@dominio.com">
+        </div>
+        <div style="margin-bottom: 8px;">
+          <label for="nombre">Nombre (required): </label>
+          <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre">
+        </div>
+      </form>
+      <div style="margin-top: 8px;">
+  <img src="https://via.placeholder.com/120.jpg" alt="imagen .jpg para selector src$=.jpg">
+      </div>
+      <p style="margin-top: 8px;">
+        Enlance HTTPS (puede verse azul/morado por pseudo-clases de enlace):
+        <a href="https://example.com" class="enlace-externo">example.com</a>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Selectores de combinación</h2>
+    <div class="box">
+      <div class="contenedor-descendiente">
+        <p>Descendiente: este p dentro de .contenedor-descendiente se pinta azul (div p).</p>
+      </div>
+
+      <ul class="demostracion-hijo" style="margin-top: 8px;">
+        <li>Hijo 1 (sin viñeta por ul > li)</li>
+        <li>Hijo 2</li>
+        <li>Hijo 3</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pseudo-clases</h2>
+    <div class="box">
+      <p>
+        Enlaces con estados: 
+        <a href="http://example.org">Enlace HTTP</a> · 
+        <a href="https://developer.mozilla.org/" class="enlace-externo">Enlace HTTPS (externo)</a>
+      </p>
+
+      <form style="margin-top: 10px;">
+        <label for="campo">Campo con focus/valid/invalid: </label>
+  <input id="campo" type="text" required placeholder="Obligatorio">
+      </form>
+
+      <ul class="lista-estructural" style="margin-top: 10px; padding-left: 20px;">
+        <li>Elemento 1 (first-child en negrita)</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3 (3n en rojo)</li>
+        <li>Elemento 4 (odd con fondo)</li>
+        <li>Elemento 5</li>
+        <li>Elemento 6 (3n en rojo)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pseudo-elementos</h2>
+    <div class="box">
+      <p><span class="icono"></span>Texto con icono generado mediante ::before.</p>
+      <p>Enlace externo con indicador ::after: <a href="https://wikipedia.org" class="enlace-externo">Wikipedia</a></p>
+      <p class="parrafo-decorado" style="margin-top: 8px;">
+        Este párrafo muestra una primera letra grande (drop cap) gracias a ::first-letter, y la primera línea en negrita por ::first-line. Selecciona texto con el ratón para ver ::selection.
+      </p>
+    </div>
+  </section>
+</body>
+</html>

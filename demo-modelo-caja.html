@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo modelo de caja</title>
+  <!--
+    Cómo verlo
+
+    - Abre este archivo en el navegador (doble clic o Live Server).
+    - Observa que content-box resulta MÁS ancho que border-box con los mismos valores de width, padding y border.
+    - Fíjate en: margin (separación externa), padding (separación interna), border (contorno),
+      y cómo box-sizing afecta el tamaño total.
+  -->
+  <style>
+    body { font-family: Arial, sans-serif; }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 10px;
+      background: #fafafa;
+      border: 1px dashed #ddd;
+    }
+
+    .box {
+      width: 200px;            /* ancho deseado para comparar */
+      padding: 20px;           /* espacio interno (afecta tamaño total en content-box) */
+      border: 10px solid #4a90e2; /* borde (afecta tamaño total en content-box) */
+      margin: 15px;            /* separación externa, no suma al tamaño de la caja */
+      background: #f5faff;     /* color de fondo para distinguir */
+      color: #333;
+    }
+
+    .content-box { box-sizing: content-box; }
+    .border-box  { box-sizing: border-box; }
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .hint {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box content-box">
+      <div class="label">content-box</div>
+      <p class="hint">
+        Total width = content (200) + padding izq/der (20+20) + border izq/der (10+10) = 260px
+      </p>
+      <p>El padding empuja el contenido hacia adentro y el borde suma más tamaño total.</p>
+    </div>
+
+    <div class="box border-box">
+      <div class="label">border-box</div>
+      <p class="hint">
+        Total width = 200px (incluye contenido + padding + border)
+      </p>
+      <p>Con border-box, el ancho declarado ya incluye padding y borde.</p>
+    </div>
+  </div>
+</body>
+</html>
