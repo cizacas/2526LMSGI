@@ -702,46 +702,52 @@ div { border: 1px solid black; }  /* Todos los div */
 #### **Selectores de atributo**
 
 ```css
-/* Elemento con atributo */
+/* [attr] → cualquier elemento con el atributo presente (valor cualquiera)
+   Ej.: input[required] selecciona inputs que tienen el atributo required */
 input[required] {
     border: 2px solid red;
 }
 
-/* Atributo con valor específico */
+/* [attr="valor"] → atributo con coincidencia exacta de valor
+   Ej.: input[type="email"] solo inputs cuyo type es exactamente "email" */
 input[type="email"] {
     background-color: lightblue;
 }
 
-/* Atributo que comienza con valor */
+/* [attr^="prefijo"] → valor de atributo que COMIENZA por el prefijo dado
+   Ej.: a[href^="https"] enlaces cuyo href empieza por https (probablemente seguros) */
 a[href^="https"] {
     color: green;
 }
 
-/* Atributo que termina con valor */
+/* [attr$="sufijo"] → valor de atributo que TERMINA con el sufijo dado
+   Ej.: img[src$=".jpg"] imágenes cuyo src termina en .jpg */
 img[src$=".jpg"] {
     border: 1px solid gray;
 }
+
+/* Nota útil: [attr*="subcadena"] selecciona cuando el valor CONTIENE esa subcadena */
 ```
 
 #### **Selectores de combinación**
 
 ```css
-/* Selector descendiente */
+/* Selector descendiente (A B): selecciona todos los <p> que están en cualquier nivel dentro de un <div> (nietos, bisnietos, etc.) */
 div p {
     color: blue;
 }
 
-/* Selector hijo directo */
+/* Selector hijo directo (A > B): selecciona solo los <li> que son hijos inmediatos de <ul>, no los más profundos */
 ul > li {
     list-style: none;
 }
 
-/* Selector hermano adyacente */
+/* Selector hermano adyacente (A + B): selecciona el primer <p> que aparece inmediatamente después de un <h1> (mismo padre) */
 h1 + p {
     font-weight: bold;
 }
 
-/* Selector hermanos generales */
+/* Selector de hermanos generales (A ~ B): selecciona todos los <p> que aparecen después de un <h1> (mismo padre, no necesariamente inmediatos) */
 h1 ~ p {
     margin-top: 10px;
 }
@@ -751,37 +757,43 @@ h1 ~ p {
 
 ```css
 /* Estados de enlace */
+/* :link → enlace no visitado aún */
 a:link { color: blue; }
+/* :visited → enlace que el usuario ya visitó (limitado por privacidad) */
 a:visited { color: purple; }
+/* :hover → cuando el puntero está encima del enlace */
 a:hover { color: red; }
+/* :active → mientras se hace clic (estado presionado) */
 a:active { color: orange; }
 
 /* Estados de formulario */
+/* :focus → elemento con foco (teclado/clic); útil para accesibilidad */
 input:focus {
     outline: 2px solid blue;
 }
-
+/* :valid → el valor del control pasa la validación nativa del navegador */
 input:valid {
     border-color: green;
 }
-
+/* :invalid → el valor no cumple el patrón/requerimientos */
 input:invalid {
     border-color: red;
 }
 
 /* Pseudo-clases estructurales */
+/* :first-child → primer hijo de su padre */
 li:first-child {
     font-weight: bold;
 }
-
+/* :last-child → último hijo de su padre */
 li:last-child {
     margin-bottom: 0;
 }
-
+/* :nth-child(odd) → hijos en posiciones impares (1,3,5,...) */
 li:nth-child(odd) {
     background-color: #f0f0f0;
 }
-
+/* :nth-child(3n) → cada 3 elementos (3,6,9,...) empezando en 3 */
 li:nth-child(3n) {
     color: red;
 }
@@ -790,29 +802,34 @@ li:nth-child(3n) {
 #### **Pseudo-elementos**
 
 ```css
-/* Pseudo-elemento before */
+/* ::before → inserta contenido generado ANTES del contenido del elemento
+   Se requiere la propiedad 'content'; útil para iconos, decoraciones */
 .icono::before {
     content: "★";
     color: gold;
 }
 
-/* Pseudo-elemento after */
+/* ::after → inserta contenido generado DESPUÉS del contenido del elemento
+   También requiere 'content'; común para indicadores, tooltips */
 .enlace-externo::after {
     content: " ↗";
 }
 
-/* Primera letra */
+/* ::first-letter → estiliza solo la primera letra del elemento
+   Típico para capitulares (drop caps) en textos editoriales */
 p::first-letter {
     font-size: 2em;
     float: left;
 }
 
-/* Primera línea */
+/* ::first-line → estiliza solo la primera línea de texto del elemento
+   Útil para destacar párrafos de inicio sin afectar todo el contenido */
 p::first-line {
     font-weight: bold;
 }
 
-/* Selección de texto */
+/* ::selection → estiliza el texto cuando el usuario lo selecciona con el ratón/teclado
+   Mejora UX con colores de marca o contraste adecuado */
 ::selection {
     background-color: yellow;
     color: black;
