@@ -647,7 +647,7 @@ p { margin: 10px; }     /* Todos los párrafos */
 div { border: 1px solid black; }  /* Todos los div */
 ```
 
-:pencil: [Ejemplo selectores](demo-selectores.html)
+:pencil: [Ejemplo selectores](http://127.0.0.1:5500/demo-selectores.html)
 
 ##### selector de clase
 * **Sintaxis**: Se escribe con un punto (`.`) seguido del nombre de la clase
@@ -664,7 +664,7 @@ div { border: 1px solid black; }  /* Todos los div */
 .boton-principal { padding: 15px; }
 ```
 
-:pencil: [Ejemplo selectores de clases](demo-clases.html)
+:pencil: [Ejemplo selectores de clases](http://127.0.0.1:5500/demo-clases.html)
 
 ##### selector de identificador (ID)
 * **Sintaxis**: Se escribe con una almohadilla (`#`) seguida del nombre del ID
@@ -681,7 +681,7 @@ div { border: 1px solid black; }  /* Todos los div */
 #pie-pagina { background-color: #333; }
 ```
 
-:pencil:[Ejemplo selectores de identificadores](demo-ids.html)
+:pencil:[Ejemplo selectores de identificadores](http://127.0.0.1:5500/demo-ids.html)
 
 #### **Selector universal**
 * **Sintaxis**: Se escribe con un asterisco (*)
@@ -818,7 +818,7 @@ p::first-line {
     color: black;
 }
 ```
-:pencil: [Ejemplo de selectores avanzados](demo-selectores-avanzados.html)
+:pencil: [Ejemplo de selectores avanzados](http://127.0.0.1:5500/demo-selectores-avanzados.html)
 
 
 ### 5.4. Propiedades principales
@@ -1098,7 +1098,7 @@ Todos los elementos HTML se representan como cajas rectangulares:
 - `content-box`: width/height = solo contenido
 - `border-box`: width/height = contenido + padding + border
 
-:pencil: [Ejemplo del modelo de caja](demo-modelo-caja.html)
+:pencil: [Ejemplo del modelo de caja](http://127.0.0.1:5500/demo-modelo-caja.html)
 
 *ℹ️Por qué a veces “no es responsivo”*
 * Anchos/altos en px: la caja no se adapta al viewport.
@@ -1298,7 +1298,7 @@ Ejemplo básico (mobile-first) con Grid y un ajuste para la navegación Flex:
 }
 ```
 
-:pencil: [Ejemplo modelo de cajas responsivo](demo-modelo-cajas-responsivo.html)
+:pencil: [Ejemplo modelo de cajas responsivo](http://127.0.0.1:5500/demo-modelo-cajas-responsivo.html)
 
 
 ## 6. Validación de documentos HTML y CSS
