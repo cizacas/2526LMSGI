@@ -1161,6 +1161,8 @@ JSON Feed es un formato moderno basado en JSON, más simple para desarrolladores
 - [Can I Use](https://caniuse.com/) - Compatibilidad de características web
 - [CSS-Tricks](https://css-tricks.com/) - Guías y trucos de CSS
 - [A List Apart](https://alistapart.com/) - Artículos sobre diseño web
+- [W3C schools HTML](https://www.w3schools.com/html/) - Tutorial de HTML
+- [W3C schools CSS](https://www.w3schools.com/css/default.asp) - Tutorial de CSS 
 
 ### **Herramientas de desarrollo**
 - [Visual Studio Code](https://code.visualstudio.com/) - Editor de código
