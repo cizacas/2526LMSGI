@@ -239,9 +239,11 @@ let resultado = sumar(3, 4); // resultado vale 7
 
 ## 4. Creación y modificación de elementos
 
-- Crear elementos: `document.createElement('tag')`
-- Añadir elementos: `parent.appendChild(elemento)`
-- Modificar contenido: `elemento.textContent`, `elemento.innerHTML`
+ Modificar contenido: `elemento.textContent`, `elemento.innerHTML`
+  
+> **Nota:**
+> - `textContent` inserta solo texto plano y no interpreta etiquetas HTML. Es más seguro para mostrar solo texto.
+> - `innerHTML` interpreta el contenido como HTML, permitiendo insertar etiquetas y elementos, pero puede ser menos seguro si el contenido proviene del usuario (riesgo de XSS).
 - Modificar atributos: `elemento.setAttribute('atributo', 'valor')`
 
 **Ejemplo:**
