@@ -60,11 +60,18 @@ Usa `let` para variables que cambian y `const` para valores que no cambian. Evit
 	let edad = 25;
 	const pi = 3.1416;
 	```
+  
 - **Cadenas de texto (strings):**
 	```js
 	let nombre = "Ana";
 	const saludo = 'Hola';
 	```
+- **caracteres especiales:**
+  los saltos de línea y las comillas tiene que representarse con el carácter de escape `\`.
+  ```js
+  alert("Este mensaje contiene unas dobles comillas: \"Así se ponen\"");
+  ```
+
 - **Booleanos:**
 	```js
 	let esMayor = true;
