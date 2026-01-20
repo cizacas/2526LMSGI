@@ -1,4 +1,23 @@
 # Documentos web utilizando lenguajes de script de cliente - JavaScript
+- [Documentos web utilizando lenguajes de script de cliente - JavaScript](#documentos-web-utilizando-lenguajes-de-script-de-cliente---javascript)
+	- [1. Lenguajes de script de cliente](#1-lenguajes-de-script-de-cliente)
+		- [1.1. Definición y características](#11-definición-y-características)
+		- [1.2. Principales lenguajes y estándares](#12-principales-lenguajes-y-estándares)
+		- [1.3. Versiones y estándares](#13-versiones-y-estándares)
+	- [2. Sintaxis básica de los lenguajes de script de cliente](#2-sintaxis-básica-de-los-lenguajes-de-script-de-cliente)
+		- [Variables y constantes (`var`, `let`, `const` en JavaScript)](#variables-y-constantes-var-let-const-en-javascript)
+		- [Principales tipos de datos y cómo declararlos](#principales-tipos-de-datos-y-cómo-declararlos)
+		- [Operadores y expresiones más comunes en JavaScript](#operadores-y-expresiones-más-comunes-en-javascript)
+		- [Estructuras de control (if, for, while, switch)](#estructuras-de-control-if-for-while-switch)
+		- [Funciones y eventos](#funciones-y-eventos)
+	- [3. Selección y acceso a elementos de un documento web](#3-selección-y-acceso-a-elementos-de-un-documento-web)
+	- [4. Creación y modificación de elementos](#4-creación-y-modificación-de-elementos)
+	- [5. Eliminación de elementos de un documento web](#5-eliminación-de-elementos-de-un-documento-web)
+	- [6. Manipulación de estilos de un documento web](#6-manipulación-de-estilos-de-un-documento-web)
+	- [Extensiones recomendadas para Visual Studio Code](#extensiones-recomendadas-para-visual-studio-code)
+		- [¿Cuál es la extensión mínima imprescindible?](#cuál-es-la-extensión-mínima-imprescindible)
+	- [Referencias](#referencias)
+
 
 ## 1. Lenguajes de script de cliente
 

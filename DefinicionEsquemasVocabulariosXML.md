@@ -1,5 +1,5 @@
-# Definición de esquemas y vocabularios XML
-- [Definición de esquemas y vocabularios XML](#definición-de-esquemas-y-vocabularios-xml)
+# Definición de esquemas y vocabularios XML - DTD y XSD
+- [Definición de esquemas y vocabularios XML - DTD y XSD](#definición-de-esquemas-y-vocabularios-xml---dtd-y-xsd)
   - [Introducción](#introducción)
   - [¿Por qué definir esquemas y vocabularios?](#por-qué-definir-esquemas-y-vocabularios)
   - [Tecnologías para la definición de esquemas](#tecnologías-para-la-definición-de-esquemas)
@@ -251,6 +251,8 @@ Ejemplo de documento XML que cumple este DTD:
 <usuario id="u002" ref="u001">Juan Pérez</usuario>
 ```
 En el primer usuario, el atributo `id` es obligatorio, `activo` toma el valor "no" (diferente del valor por defecto), y `tipo` es siempre "lector" (por ser #FIXED). En el segundo usuario, `ref` referencia a otro usuario y `activo` toma el valor por defecto "si".
+
+:computer: Actividad 1 y Actividad 2
 
 ## XSD (XML Schema Definition)
 
@@ -623,6 +625,8 @@ Este fragmento define la estructura de una biblioteca:
 - `<xs:key>` define que el atributo `id` de cada `libro` debe ser único dentro de la biblioteca (clave primaria).
 - `<xs:keyref>` define que el atributo `libroId` de cada `prestamo` debe corresponder a un `id` existente en algún `libro` (clave foránea o referencia).
 Así, se garantiza la integridad referencial entre los préstamos y los libros.
+
+:computer: Actividad 3 y Actividad 4
 
 ### Herramientas de validación
   - **XMLLINT**: Tipo: Software gratuito (open source)  
