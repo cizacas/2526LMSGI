@@ -136,7 +136,7 @@ La declaración de un elemento se realiza con `<!ELEMENT>`.
 | ANY           | Puede contener cualquier tipo de contenido        |
 | (#PCDATA)     | Contenido textual (Parsed Character Data)         |
 | (hijo1, hijo2)| Secuencia de elementos hijos                      |
-| (hijo1 | hijo2) | Uno u otro elemento hijo (alternativa)         |
+| (hijo1 \| hijo2) | Uno u otro elemento hijo (alternativa)         |
 | (hijo1*)      | Cero o más repeticiones del elemento hijo         |
 | (hijo1+)      | Una o más repeticiones del elemento hijo          |
 | (hijo1?)      | Cero o una vez el elemento hijo                   |
@@ -197,7 +197,7 @@ La declaración de un atributo se realiza con `<!ATTLIST>`.
 | IDREFS     | Lista de referencias a IDs                  |
 | NMTOKEN    | Token válido como nombre                    |
 | NMTOKENS   | Lista de tokens válidos                     |
-| (v1|v2|v3) | Enumeración de valores permitidos           |
+| (v1\|v2\|v3) | Enumeración de valores permitidos           |
 
 #### Tabla: Principales valores de valorAtributo
 
