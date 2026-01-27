@@ -35,6 +35,7 @@
     - [Definición de elementos simples](#definición-de-elementos-simples)
     - [Definición de elementos complejos](#definición-de-elementos-complejos)
     - [Definición de atributos](#definición-de-atributos)
+      - [Atributos importantes en XSD:](#atributos-importantes-en-xsd)
     - [Tipos de datos](#tipos-de-datos)
     - [Restricciones sobre los datos](#restricciones-sobre-los-datos)
     - [Otras reglas y estructuras en XSD](#otras-reglas-y-estructuras-en-xsd)
@@ -417,6 +418,17 @@ Este fragmento define un elemento complejo llamado `persona` que debe contener, 
 
 A la hora de declarar los atributos hay que tener en cuenta que es muy importante la posición de la declaración dentro del elemento complejo. Los atributos hay que declararlos siempre al final, es decir, antes de cerrar el `complexType` y fuera del `sequence` en el caso de los elementos que contengan a otros elementos.
 
+#### Atributos importantes en XSD: 
+
+- **maxOccurs**: Este atributo se utiliza en la declaración de elementos para indicar el número máximo de veces que un elemento puede aparecer. Por ejemplo, `maxOccurs="unbounded"` significa que el elemento puede aparecer un número ilimitado de veces. Si se pone un número (por ejemplo, `maxOccurs="3"`), el elemento podrá aparecer como máximo ese número de veces.
+- **use**: Este atributo se utiliza en la declaración de atributos dentro de un elemento complejo. Puede tomar valores como `required` (el atributo es obligatorio), `optional` (el atributo es opcional) o `prohibited` (el atributo no puede aparecer). Por ejemplo, `use="required"` indica que el atributo debe estar presente en el elemento.
+- **minOccurs**: número mínimo de apariciones de un elemento (por defecto es 1).
+- **default**: valor por defecto para un elemento o atributo si no aparece en el XML.
+- **fixed**: valor fijo que debe tener un elemento o atributo si aparece.
+- **name**: para definir el nombre del atributo
+- **type**:para definir el tipo de dato
+- **ref**: para definir la referencia a otro elemento/atributo.
+  
 ```xml
 <xs:element name="libro">
   <xs:complexType>
