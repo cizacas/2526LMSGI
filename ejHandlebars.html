@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo Handlebars + JSON</title>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+</head>
+<body>
+  <h2>Listado de Libros (Handlebars + JSON)</h2>
+  <!-- Plantilla Handlebars embebida -->
+  <script id="plantilla-libros" type="text/x-handlebars-template">
+    <ul>
+      {{#each libros}}
+        <li>{{titulo}} - {{autor}}</li>
+      {{/each}}
+    </ul>
+  </script>
+  <div id="resultado"></div>
+
+  <script>
+    // Datos JSON
+    var datos = {
+      libros: [
+        {titulo: "1984", autor: "George Orwell"},
+        {titulo: "Fahrenheit 451", autor: "Ray Bradbury"}
+      ]
+    };
+    // Obtener la plantilla del HTML
+    var fuente = document.getElementById('plantilla-libros').innerHTML;
+    // Compilar la plantilla
+    var plantilla = Handlebars.compile(fuente);
+    // Generar el HTML pasando los datos JSON
+    var html = plantilla(datos);
+    // Insertar el HTML generado en la página
+    document.getElementById('resultado').innerHTML = html;
+  </script>
+</body>
+</html>
