@@ -25,6 +25,7 @@
       - [**Encabezados**](#encabezados)
       - [**Formato de texto**](#formato-de-texto)
       - [**Listas**](#listas)
+      - [**Tablas**](#tablas)
     - [3.3. Etiquetas para multimedia](#33-etiquetas-para-multimedia)
       - [**Imágenes**](#imágenes)
       - [**Audio y video**](#audio-y-video)
@@ -350,6 +351,114 @@ En el siguiente enlace disponéis de un resumen muy completo de las etiquetas di
     <dd>Descripción del término</dd>
 </dl>
 ```
+#### **Tablas**
+
+Las tablas en HTML se utilizan para mostrar datos en forma de filas y columnas. Las principales etiquetas que se utilizan para definir una tabla son:
+
+- `<table>`: Define el inicio y el final de la tabla.
+- `<tr>`: Define una fila de la tabla (table row).
+- `<th>`: Define una celda de encabezado (table header).
+- `<td>`: Define una celda de datos (table data).
+
+Otras etiquetas útiles:
+- `<caption>`: Añade un título a la tabla.
+- `<thead>`: Agrupa el encabezado de la tabla.
+- `<tbody>`: Agrupa el cuerpo de la tabla.
+- `<tfoot>`: Agrupa el pie de la tabla.
+
+Para agrupar varias filas o columnas en una celda, se utilizan los atributos:
+- `rowspan`: Hace que una celda ocupe varias filas.
+- `colspan`: Hace que una celda ocupe varias columnas.
+
+**Ejemplo básico de tabla**
+
+```html
+<table border="1">
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Ciudad</th>
+  </tr>
+  <tr>
+    <td>Ana</td>
+    <td>23</td>
+    <td>Madrid</td>
+  </tr>
+  <tr>
+    <td>Juan</td>
+    <td>30</td>
+    <td>Barcelona</td>
+  </tr>
+</table>
+```
+
+**Ejemplo con `<thead>`, `<tbody>` y `<tfoot>`**
+
+```html
+<table border="1">
+  <caption>Ejemplo de tabla con secciones</caption>
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Manzanas</td>
+      <td>1,20 €</td>
+    </tr>
+    <tr>
+      <td>Peras</td>
+      <td>1,50 €</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>2,70 €</td>
+    </tr>
+  </tfoot>
+</table>
+```
+**Ejemplo de tabla usando `colspan`**
+
+```html
+<table border="1">
+  <tr>
+    <th colspan="2">Nombre completo</th>
+    <th>Edad</th>
+  </tr>
+  <tr>
+    <td>Juan</td>
+    <td>Pérez</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Ana</td>
+    <td>López</td>
+    <td>30</td>
+  </tr>
+</table>
+```
+**Ejemplo de tabla usando `rowspan`**
+
+```html
+<table border="1">
+  <tr>
+    <th rowspan="2">Producto</th>
+    <th>Precio</th>
+  </tr>
+  <tr>
+    <td>1,20 €</td>
+  </tr>
+  <tr>
+    <td>Peras</td>
+    <td>1,50 €</td>
+  </tr>
+</table>
+```
+
 :pencil: Realizar actividad 2
 
 ### 3.3. Etiquetas para multimedia
