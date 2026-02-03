@@ -265,6 +265,8 @@ Puedes aplicar un XSLT a un XML de varias formas:
 **4. Programas específicos:**
 - **Oxygen XML Editor:** Muy completo para trabajar profesionalmente con XML y XSLT.
 
+:pencil: Actividad 1, Actividad 2, Actividad 3 y Actividad 4 
+
 ### 3.2 Transformación y validación de JSON 
 
 Para trabajar con JSON y transformarlo a otros formatos como HTML, existen herramientas y lenguajes similares a XSLT en XML:
