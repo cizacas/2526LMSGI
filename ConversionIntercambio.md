@@ -10,6 +10,7 @@
       - [Ejemplo paso a paso:](#ejemplo-paso-a-paso)
       - [Estructura básica de una plantilla XSLT](#estructura-básica-de-una-plantilla-xslt)
       - [Principales elementos de XSLT:](#principales-elementos-de-xslt)
+      - [Otras instrucciones útiles de XSLT](#otras-instrucciones-útiles-de-xslt)
       - [¿Cómo se aplica un XSLT?](#cómo-se-aplica-un-xslt)
     - [3.2 Transformación y validación de JSON](#32-transformación-y-validación-de-json)
       - [Ejemplo: Cómo unir JSON y Handlebars paso a paso](#ejemplo-cómo-unir-json-y-handlebars-paso-a-paso)
@@ -241,6 +242,163 @@ Y este fragmento XSLT:
 </xsl:template>
 ```
 Esto generará una lista HTML con los títulos de los libros.
+
+- `<xsl:output>`: Se utiliza para indicar **cómo** se generará el resultado de la transformación: tipo de documento (XML, HTML, texto plano), codificación, sangrado, etc. Suele colocarse al inicio del documento XSLT, como hijo directo de `<xsl:stylesheet>`.
+
+Ejemplo básico:
+
+```xml
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <!-- Indicamos que la salida será HTML, en UTF-8 y con sangrado -->
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+
+  <xsl:template match="/">
+    <html>
+      <head>
+        <title>Listado de libros</title>
+      </head>
+      <body>
+        <h1>Libros</h1>
+        <ul>
+          <xsl:apply-templates select="libros/libro"/>
+        </ul>
+      </body>
+    </html>
+  </xsl:template>
+
+  <xsl:template match="libro">
+    <li><xsl:value-of select="titulo"/></li>
+  </xsl:template>
+
+</xsl:stylesheet>
+```
+
+En este caso, `xsl:output` controla que el navegador reciba una página HTML bien formateada.
+
+
+- `<xsl:element>`: Se utiliza para **crear elementos de forma dinámica** en la salida. Es útil cuando el nombre de la etiqueta que queremos generar depende de un valor del XML o de una condición.
+
+Ejemplo sencillo:
+
+```xml
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:template match="campo">
+    <!-- Crea una etiqueta cuyo nombre viene del atributo @nombre -->
+    <xsl:element name="{ @nombre }">
+      <xsl:value-of select="."/>
+    </xsl:element>
+  </xsl:template>
+
+</xsl:stylesheet>
+```
+
+Si el XML tuviera este fragmento:
+
+```xml
+<campo nombre="titulo">El Quijote</campo>
+```
+
+La salida generada sería:
+
+```xml
+<titulo>El Quijote</titulo>
+```
+
+Es decir, `xsl:element` permite que el nombre de la etiqueta de salida sea variable.
+
+
+- `<xsl:attribute>`: Se utiliza para **añadir atributos** a un elemento que se está generando en la salida. El nombre del atributo puede ser fijo o dinámico y su valor suele venir de datos del XML.
+
+Ejemplo básico añadiendo un atributo fijo y otro dinámico:
+
+```xml
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:template match="libro">
+    <div>
+      <xsl:attribute name="class">destacado</xsl:attribute>
+      <xsl:attribute name="codigo">
+        <xsl:value-of select="@id"/>
+      </xsl:attribute>
+      <xsl:value-of select="titulo"/>
+    </div>
+  </xsl:template>
+
+</xsl:stylesheet>
+```
+
+Si el XML tuviera:
+
+```xml
+<libro id="L001">
+  <titulo>El Quijote</titulo>
+</libro>
+```
+
+La salida sería:
+
+```html
+<div class="destacado" codigo="L001">El Quijote</div>
+```
+
+Es decir, `xsl:attribute` permite construir atributos (y sus valores) a partir de la información del XML o de constantes.
+
+
+- `<xsl:text>`: Se utiliza para **insertar texto literal** en la salida, respetando espacios, saltos de línea o caracteres especiales que a veces el procesador podría ignorar si se escriben directamente.
+
+Ejemplo sencillo mezclando datos del XML con texto fijo:
+
+```xml
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:template match="libro">
+    <p>
+      <xsl:text>Título: </xsl:text>
+      <xsl:value-of select="titulo"/>
+      <xsl:text> - Autor: </xsl:text>
+      <xsl:value-of select="autor"/>
+    </p>
+  </xsl:template>
+
+</xsl:stylesheet>
+```
+
+Si el XML fuera:
+
+```xml
+<libro>
+  <titulo>El Quijote</titulo>
+  <autor>Cervantes</autor>
+</libro>
+```
+
+La salida sería:
+
+```html
+<p>Título: El Quijote - Autor: Cervantes</p>
+```
+
+De esta forma, `xsl:text` garantiza que se conserven exactamente los espacios y el texto que queremos en la salida.
+
+> Nota: `xsl:text` es especialmente útil cuando necesitamos conservar varios espacios seguidos, tabulaciones o saltos de línea. Si escribimos ese texto directamente en la plantilla sin `xsl:text`, el procesador XSLT podría “colapsar” los espacios y no aparecerían tal y como los hemos escrito.
+
+
+#### Otras instrucciones útiles de XSLT 
+
+| Instrucción           | Descripción breve                                                     | Uso típico                                      |
+|-----------------------|-----------------------------------------------------------------------|-------------------------------------------------|
+| `<xsl:variable>`      | Declara una variable con un valor calculado o literal.              | Guardar valores intermedios o expresiones XPath |
+| `<xsl:param>`         | Declara un parámetro que se puede pasar desde fuera a la transformación. | Configurar opciones o filtros desde el exterior |
+| `<xsl:call-template>` | Llama a otra plantilla por su nombre.                               | Reutilizar “bloques de código” tipo función     |
+| `<xsl:copy>`          | Copia el nodo actual (sin hijos ni atributos opcionalmente).        | Clonar parte del XML manteniendo su estructura  |
+| `<xsl:copy-of>`       | Copia un nodo o conjunto de nodos completo.                         | Duplicar secciones del XML tal cual            |
+| `<xsl:comment>`       | Genera un comentario en la salida.                                  | Añadir comentarios al XML/HTML resultante       |
 
 
 #### ¿Cómo se aplica un XSLT?
