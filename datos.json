@@ -1,0 +1,16 @@
+{
+  "peliculas": [
+    {
+      "titulo": "La llegada",
+      "director": "Denis Villeneuve",
+      "año": 2016,
+      "genero": "Ciencia ficción"
+    },
+    {
+      "titulo": "Parásitos",
+      "director": "Bong Joon-ho",
+      "año": 2019,
+      "genero": "Drama"
+    }
+  ]
+}

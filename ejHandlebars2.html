@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Películas</title>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+</head>
+<body>
+  <h1>Listado de Películas</h1>
+  <div id="contenido"></div>
+
+  <!-- Plantilla Handlebars -->
+  <script id="plantilla-peliculas" type="text/x-handlebars-template">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Director</th>
+          <th>Año</th>
+          <th>Género</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each peliculas}}
+        <tr>
+          <td>{{titulo}}</td>
+          <td>{{director}}</td>
+          <td>{{año}}</td>
+          <td>{{genero}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </script>
+
+  <!-- Script para cargar JSON y renderizar -->
+  <script>
+    // Cargar el archivo JSON
+    fetch('datos.json')
+      .then(response => response.json())
+      .then(data => {
+        // Obtener la plantilla
+        const source = document.getElementById('plantilla-peliculas').innerHTML;
+        const template = Handlebars.compile(source);
+
+        // Renderizar la plantilla con los datos
+        const html = template(data);
+
+        // Insertar el HTML generado en el DOM
+        document.getElementById('contenido').innerHTML = html;
+      })
+      .catch(error => console.error('Error al cargar el JSON:', error));
+  </script>
+</body>
+</html>

@@ -517,6 +517,32 @@ Este ejemplo será una _plantilla embebida en el HTML_:
 
 :pencil: Ejemplo ejHandlebars.html
 
+Si queremos que los datos JSON se carguen desde un archivo externo. En el JavaScript realizamos una solicitud `fetch` al archivo JSON y luego pasar los datos a Handlebars para renderizar la plantill.
+
+Si suponemos que el archivo se denomina `datos.json`
+
+```html
+  <!-- Script para cargar JSON y renderizar -->
+  <script>
+    // Cargar el archivo JSON
+    fetch('datos.json')
+      .then(response => response.json())
+      .then(data => {
+        // Obtener la plantilla
+        const source = document.getElementById('plantilla-libros').innerHTML;
+        const template = Handlebars.compile(source);
+
+        // Renderizar la plantilla con los datos
+        const html = template(data);
+
+        // Insertar el HTML generado en el DOM
+        document.getElementById('contenido').innerHTML = html;
+      })
+      .catch(error => console.error('Error al cargar el JSON:', error));
+  </script>
+```
+:pencil: Ejemplo ejHandlebars2.html
+
 #### Principales elementos de una plantilla Handlebars
 
 - `{{variable}}`: Inserta el valor de una variable del JSON.
@@ -608,7 +634,7 @@ Supón que quieres reutilizar una plantilla para mostrar cada libro.
 
 3. Registro y uso en JavaScript
 
-```html
+```javascript
 // Obtener el contenido de la plantilla parcial
 var parcial = document.getElementById('parcial-libro').innerHTML;
 // Registrar el partial
