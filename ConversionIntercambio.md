@@ -437,6 +437,7 @@ Para trabajar con JSON y transformarlo a otros formatos como HTML, existen herra
 **Ejemplo práctico de JSONata**
 
 Supón que tienes este JSON:
+
 ```json
 {
   "libros": [
@@ -446,6 +447,7 @@ Supón que tienes este JSON:
 }
 ```
 Si quieres obtener la lista de títulos, puedes usar la expresión JSONata:
+
 ```
 libros.titulo
 ```
@@ -473,11 +475,13 @@ Este ejemplo será una _plantilla embebida en el HTML_:
 * El código JavaScript toma esa plantilla y la une con el JSON para generar el HTML final.
 
 1. **Incluye Handlebars en tu HTML** (puedes usar CDN):
+   
 ```html
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
 ```
 
-2. **Define la plantilla en tu HTML**:
+1. **Define la plantilla en tu HTML**:
+   
 ```html
 <script id="plantilla-libros" type="text/x-handlebars-template">
   <ul>
@@ -489,7 +493,8 @@ Este ejemplo será una _plantilla embebida en el HTML_:
 <div id="resultado"></div>
 ```
 
-3. **Prepara los datos JSON y el código JavaScript**:
+1. **Prepara los datos JSON y el código JavaScript**:
+   
 ```html
 <script>
   // Tus datos JSON
@@ -541,6 +546,7 @@ Si suponemos que el archivo se denomina `datos.json`
       .catch(error => console.error('Error al cargar el JSON:', error));
   </script>
 ```
+
 :pencil: Ejemplo ejHandlebars2.html
 
 #### Principales elementos de una plantilla Handlebars
@@ -556,7 +562,9 @@ Si suponemos que el archivo se denomina `datos.json`
   ]
 }
 ```
+
 ```handlebars
+
 <ul>
   {{#each libros}}
     <li>{{titulo}} - {{autor}}</li>
@@ -567,6 +575,7 @@ Si suponemos que el archivo se denomina `datos.json`
 - `{{#if condicion}} ... {{/if}}`: Muestra el bloque solo si se cumple la condición.
 
 ```handlebars
+
 <ul>
   {{#each libros}}
     <li>
@@ -603,7 +612,9 @@ Si suponemos que el archivo se denomina `datos.json`
   "generos": ["Ciencia ficción", "Novela", "Ensayo"]
 }
 ```
+
 ```handlebars
+
 <ul>
   {{#each generos}}
     <li>{{this}}</li>
@@ -622,6 +633,7 @@ Supón que quieres reutilizar una plantilla para mostrar cada libro.
   <li>{{titulo}} - {{autor}}</li>
 </script>
 ```
+
 2. Plantilla principal:
 
 ```handlebars
