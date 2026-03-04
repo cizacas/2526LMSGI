@@ -486,9 +486,9 @@ Este ejemplo será una _plantilla embebida en el HTML_:
 ```html
 <script id="plantilla-libros" type="text/x-handlebars-template">
   <ul>
-    \{{#each libros}}
-      <li>\{{titulo}} - \{{autor}}</li>
-    \{{/each}}
+    {{#each libros}}
+      <li>{{titulo}} - {{autor}}</li>
+    {{/each}}
   </ul>
 </script>
 <div id="resultado"></div>
@@ -567,9 +567,9 @@ Si suponemos que el archivo se denomina `datos.json`
 ```text
 
 <ul>
-  \{{#each libros}}
-    <li>\{{titulo}} - \{{autor}}</li>
-  \{{/each}}
+  {{#each libros}}
+    <li>{{titulo}} - {{autor}}</li>
+  {{/each}}
 </ul>
 ```
 
@@ -578,16 +578,16 @@ Si suponemos que el archivo se denomina `datos.json`
 ```handlebars
 
 <ul>
-  \{{#each libros}}
+  {{#each libros}}
     <li>
-      \{{titulo}} - \{{autor}}
-      \{{#if disponible}}
+      {{titulo}} - {{autor}}
+      {{#if disponible}}
         <span style="color:green">(Disponible)</span>
-      \{{else}}
+      {{else}}
         <span style="color:red">(No disponible)</span>
-      \{{/if}}
+      {{/if}}
     </li>
-  \{{/each}}
+  {{/each}}
 </ul>
 ```
 
@@ -595,14 +595,14 @@ Si suponemos que el archivo se denomina `datos.json`
 
 ```handlebars
 <ul>
-  \{{#each libros}}
+  {{#each libros}}
     <li>
-      \{{titulo}} - \{{autor}}
-      \{{#unless disponible}}
+      {{titulo}} - {{autor}}
+      {{#unless disponible}}
         <span style="color:red">(No disponible)</span>
-      \{{/unless}}
+      {{/unless}}
     </li>
-  \{{/each}}
+  {{/each}}
 </ul>
 ```
 
@@ -617,9 +617,9 @@ Si suponemos que el archivo se denomina `datos.json`
 ```handlebars
 
 <ul>
-  \{{#each generos}}
-    <li>\{{this}}</li>
-  \{{/each}}
+  {{#each generos}}
+    <li>{{this}}</li>
+  {{/each}}
 </ul>
 ```
 
@@ -631,7 +631,7 @@ Supón que quieres reutilizar una plantilla para mostrar cada libro.
 
 ```html
 <script id="parcial-libro" type="text/x-handlebars-template">
-  <li>\{{titulo}} - \{{autor}}</li>
+  <li>{{titulo}} - {{autor}}</li>
 </script>
 ```
 
@@ -639,9 +639,9 @@ Supón que quieres reutilizar una plantilla para mostrar cada libro.
 
 ```handlebars
 <ul>
-  \{{#each libros}}
-    \{{> parcial-libro}}
-  \{{/each}}
+  {{#each libros}}
+    {{> parcial-libro}}
+  {{/each}}
 </ul>
 ```
 
