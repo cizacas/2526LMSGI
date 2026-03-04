@@ -563,7 +563,7 @@ Si suponemos que el archivo se denomina `datos.json`
 }
 ```
 
-```handlebars
+```text
 
 <ul>
   {{#each libros}}
