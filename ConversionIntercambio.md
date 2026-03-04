@@ -590,7 +590,7 @@ Si suponemos que el archivo se denomina `datos.json`
 </ul>
 ```
 
-- &#123;&#123;#unless condicion&#125;&#125; ... &#123;&#123;/unless#125;&#125;: Muestra el bloque solo si NO se cumple la condición.
+- &#123;&#123;#unless condicion&#125;&#125; ... &#123;&#123;/unless&#125;&#125;: Muestra el bloque solo si NO se cumple la condición.
 
 ```handlebars
 <ul>
