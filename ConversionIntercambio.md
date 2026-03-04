@@ -486,9 +486,9 @@ Este ejemplo será una _plantilla embebida en el HTML_:
 ```html
 <script id="plantilla-libros" type="text/x-handlebars-template">
   <ul>
-    &#123;&#123;#each libros}}
-      <li>&#123;&#123;titulo}} - &#123;&#123;autor}}</li>
-    &#123;&#123;/each}}
+    \{{#each libros}}
+      <li>\{{titulo}} - \{{autor}}</li>
+    \{{/each}}
   </ul>
 </script>
 <div id="resultado"></div>
@@ -527,7 +527,6 @@ Si queremos que los datos JSON se carguen desde un archivo externo. En el JavaSc
 
 Si suponemos que el archivo se denomina `datos.json`
 
-{% raw %}
 ```html
   <!-- Script para cargar JSON y renderizar -->
   <script>
@@ -548,7 +547,6 @@ Si suponemos que el archivo se denomina `datos.json`
       .catch(error => console.error('Error al cargar el JSON:', error));
   </script>
 ```
-{% endraw %}
 
 :pencil: Ejemplo ejHandlebars2.html
 
@@ -566,53 +564,47 @@ Si suponemos que el archivo se denomina `datos.json`
 }
 ```
 
-{% raw %}
 ```text
 
 <ul>
-  {{#each libros}}
-    <li>{{titulo}} - {{autor}}</li>
-  {{/each}}
+  \{{#each libros}}
+    <li>\{{titulo}} - \{{autor}}</li>
+  \{{/each}}
 </ul>
 ```
-{% endraw %}
 
 - &#123;&#123;#if condicion&#125;&#125; ... &#123;&#123;/if&#125;&#125;`: Muestra el bloque solo si se cumple la condición.
 
-{% raw %}
 ```handlebars
 
 <ul>
-  {{#each libros}}
+  \{{#each libros}}
     <li>
-      {{titulo}} - {{autor}}
-      {{#if disponible}}
+      \{{titulo}} - \{{autor}}
+      \{{#if disponible}}
         <span style="color:green">(Disponible)</span>
-      {{else}}
+      \{{else}}
         <span style="color:red">(No disponible)</span>
-      {{/if}}
+      \{{/if}}
     </li>
-  {{/each}}
+  \{{/each}}
 </ul>
 ```
-{% endraw %}
 
 - &#123;&#123;#unless condicion&#125;&#125; ... &#123;&#123;/unless&#125;&#125;: Muestra el bloque solo si NO se cumple la condición.
 
-{% raw %}
 ```handlebars
 <ul>
-  {{#each libros}}
+  \{{#each libros}}
     <li>
-      {{titulo}} - {{autor}}
-      {{#unless disponible}}
+      \{{titulo}} - \{{autor}}
+      \{{#unless disponible}}
         <span style="color:red">(No disponible)</span>
-      {{/unless}}
+      \{{/unless}}
     </li>
-  {{/each}}
+  \{{/each}}
 </ul>
 ```
-{% endraw %}
 
 -  &#123;&#123;this&#125;&#125;: Referencia al elemento actual dentro de un bucle.
 
@@ -622,16 +614,14 @@ Si suponemos que el archivo se denomina `datos.json`
 }
 ```
 
-{% raw %}
 ```handlebars
 
 <ul>
-  {{#each generos}}
-    <li>{{this}}</li>
-  {{/each}}
+  \{{#each generos}}
+    <li>\{{this}}</li>
+  \{{/each}}
 </ul>
 ```
-{% endraw %}
 
 - &#123;&#123;> partial&#125;&#125;: Inserta una plantilla parcial (útil en proyectos grandes).
 
@@ -639,21 +629,19 @@ Supón que quieres reutilizar una plantilla para mostrar cada libro.
 
 1. Plantilla parcial (por ejemplo, en el HTML):
 
-{% raw %}
 ```html
 <script id="parcial-libro" type="text/x-handlebars-template">
-  <li>{{titulo}} - {{autor}}</li>
+  <li>\{{titulo}} - \{{autor}}</li>
 </script>
 ```
-{% endraw %}
 
 2. Plantilla principal:
 
 ```handlebars
 <ul>
-  {{#each libros}}
-    {{> parcial-libro}}
-  {{/each}}
+  \{{#each libros}}
+    \{{> parcial-libro}}
+  \{{/each}}
 </ul>
 ```
 
