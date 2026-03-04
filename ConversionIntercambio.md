@@ -528,7 +528,6 @@ Si queremos que los datos JSON se carguen desde un archivo externo. En el JavaSc
 
 Si suponemos que el archivo se denomina `datos.json`
 
-{% raw %}
 ```html
   <!-- Script para cargar JSON y renderizar -->
   <script>
@@ -549,7 +548,6 @@ Si suponemos que el archivo se denomina `datos.json`
       .catch(error => console.error('Error al cargar el JSON:', error));
   </script>
 ```
-{% endraw %}
 
 :pencil: Ejemplo ejHandlebars2.html
 
@@ -568,7 +566,7 @@ Si suponemos que el archivo se denomina `datos.json`
 ```
 
 {% raw %}
-```text
+```handlebars
 
 <ul>
   {{#each libros}}
@@ -578,7 +576,7 @@ Si suponemos que el archivo se denomina `datos.json`
 ```
 {% endraw %}
 
-- &#123;&#123;#if condicion&#125;&#125; ... &#123;&#123;/if&#125;&#125;`: Muestra el bloque solo si se cumple la condición.
+- &#123;&#123;#if condicion&#125;&#125; ... &#123;&#123;/if&#125;&#125;: Muestra el bloque solo si se cumple la condición.
 
 {% raw %}
 ```handlebars
