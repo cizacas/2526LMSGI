@@ -482,7 +482,7 @@ Este ejemplo será una _plantilla embebida en el HTML_:
 
 1. **Define la plantilla en tu HTML**:
    
-
+{% raw %}
 ```html
 <script id="plantilla-libros" type="text/x-handlebars-template">
   <ul>
@@ -493,6 +493,7 @@ Este ejemplo será una _plantilla embebida en el HTML_:
 </script>
 <div id="resultado"></div>
 ```
+{% endraw %}
 
 1. **Prepara los datos JSON y el código JavaScript**:
    
@@ -527,6 +528,7 @@ Si queremos que los datos JSON se carguen desde un archivo externo. En el JavaSc
 
 Si suponemos que el archivo se denomina `datos.json`
 
+{% raw %}
 ```html
   <!-- Script para cargar JSON y renderizar -->
   <script>
@@ -547,6 +549,7 @@ Si suponemos que el archivo se denomina `datos.json`
       .catch(error => console.error('Error al cargar el JSON:', error));
   </script>
 ```
+{% endraw %}
 
 :pencil: Ejemplo ejHandlebars2.html
 
@@ -564,6 +567,7 @@ Si suponemos que el archivo se denomina `datos.json`
 }
 ```
 
+{% raw %}
 ```text
 
 <ul>
@@ -572,9 +576,11 @@ Si suponemos que el archivo se denomina `datos.json`
   {{/each}}
 </ul>
 ```
+{% endraw %}
 
 - &#123;&#123;#if condicion&#125;&#125; ... &#123;&#123;/if&#125;&#125;`: Muestra el bloque solo si se cumple la condición.
 
+{% raw %}
 ```handlebars
 
 <ul>
@@ -590,9 +596,11 @@ Si suponemos que el archivo se denomina `datos.json`
   {{/each}}
 </ul>
 ```
+{% endraw %}
 
 - &#123;&#123;#unless condicion&#125;&#125; ... &#123;&#123;/unless&#125;&#125;: Muestra el bloque solo si NO se cumple la condición.
 
+{% raw %}
 ```handlebars
 <ul>
   {{#each libros}}
@@ -605,6 +613,7 @@ Si suponemos que el archivo se denomina `datos.json`
   {{/each}}
 </ul>
 ```
+{% endraw %}
 
 -  &#123;&#123;this&#125;&#125;: Referencia al elemento actual dentro de un bucle.
 
@@ -614,6 +623,7 @@ Si suponemos que el archivo se denomina `datos.json`
 }
 ```
 
+{% raw %}
 ```handlebars
 
 <ul>
@@ -622,6 +632,7 @@ Si suponemos que el archivo se denomina `datos.json`
   {{/each}}
 </ul>
 ```
+{% endraw %}
 
 - &#123;&#123;> partial&#125;&#125;: Inserta una plantilla parcial (útil en proyectos grandes).
 
@@ -629,14 +640,17 @@ Supón que quieres reutilizar una plantilla para mostrar cada libro.
 
 1. Plantilla parcial (por ejemplo, en el HTML):
 
+{% raw %}
 ```html
 <script id="parcial-libro" type="text/x-handlebars-template">
   <li>{{titulo}} - {{autor}}</li>
 </script>
 ```
+{% endraw %}
 
 2. Plantilla principal:
 
+{% raw %}
 ```handlebars
 <ul>
   {{#each libros}}
@@ -644,6 +658,7 @@ Supón que quieres reutilizar una plantilla para mostrar cada libro.
   {{/each}}
 </ul>
 ```
+{% endraw %}
 
 3. Registro y uso en JavaScript
 
