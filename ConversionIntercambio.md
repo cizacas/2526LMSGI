@@ -471,7 +471,7 @@ Esto selecciona todos los valores del campo "titulo" dentro del array "libros" y
 
 Este ejemplo será una _plantilla embebida en el HTML_:
 * Solo necesitas un archivo .html.
-* La plantilla Handlebars va dentro de una etiqueta <script type="text/x-handlebars-template"> en el propio HTML.
+* La plantilla Handlebars va dentro de una etiqueta `<script type="text/x-handlebars-template">` en el propio HTML.
 * El código JavaScript toma esa plantilla y la une con el JSON para generar el HTML final.
 
 1. **Incluye Handlebars en tu HTML** (puedes usar CDN):
@@ -551,7 +551,7 @@ Si suponemos que el archivo se denomina `datos.json`
 
 #### Principales elementos de una plantilla Handlebars
 
-- {{'{{variable}}'}}: Inserta el valor de una variable del JSON.
+- &#123;&#123;variable&#125;&#125;: Inserta el valor de una variable del JSON.
 - `{{#each array}} ... {{/each}}`: Recorre un array del JSON y repite el bloque para cada elemento.
 
 ```json
