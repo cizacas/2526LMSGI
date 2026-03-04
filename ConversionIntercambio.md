@@ -551,7 +551,7 @@ Si suponemos que el archivo se denomina `datos.json`
 
 #### Principales elementos de una plantilla Handlebars
 
-- `{{variable}}`: Inserta el valor de una variable del JSON.
+- {{'{{variable}}'}}: Inserta el valor de una variable del JSON.
 - `{{#each array}} ... {{/each}}`: Recorre un array del JSON y repite el bloque para cada elemento.
 
 ```json
