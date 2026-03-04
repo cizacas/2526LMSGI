@@ -552,7 +552,7 @@ Si suponemos que el archivo se denomina `datos.json`
 #### Principales elementos de una plantilla Handlebars
 
 - &#123;&#123;variable&#125;&#125;: Inserta el valor de una variable del JSON.
-- `{{#each array}} ... {{/each}}`: Recorre un array del JSON y repite el bloque para cada elemento.
+- &#123;&#123;#each array&#125;&#125; ... &#123;&#123;/each&#125;&#125;: Recorre un array del JSON y repite el bloque para cada elemento.
 
 ```json
 {
@@ -572,7 +572,7 @@ Si suponemos que el archivo se denomina `datos.json`
 </ul>
 ```
 
-- `{{#if condicion}} ... {{/if}}`: Muestra el bloque solo si se cumple la condición.
+- &#123;&#123;#if condicion&#125;&#125; ... &#123;&#123;/if&#125;&#125;`: Muestra el bloque solo si se cumple la condición.
 
 ```handlebars
 
@@ -590,7 +590,7 @@ Si suponemos que el archivo se denomina `datos.json`
 </ul>
 ```
 
-- `{{#unless condicion}} ... {{/unless}}`: Muestra el bloque solo si NO se cumple la condición.
+- &#123;&#123;#unless condicion&#125;&#125; ... &#123;&#123;/unless#125;&#125;: Muestra el bloque solo si NO se cumple la condición.
 
 ```handlebars
 <ul>
@@ -605,7 +605,7 @@ Si suponemos que el archivo se denomina `datos.json`
 </ul>
 ```
 
-- `{{this}}`: Referencia al elemento actual dentro de un bucle.
+-  &#123;&#123;this&#125;&#125;: Referencia al elemento actual dentro de un bucle.
 
 ```json  
 {
@@ -622,7 +622,7 @@ Si suponemos que el archivo se denomina `datos.json`
 </ul>
 ```
 
-- `{{> partial}}`: Inserta una plantilla parcial (útil en proyectos grandes).
+- &#123;&#123;> partial&#125;&#125;: Inserta una plantilla parcial (útil en proyectos grandes).
 
 Supón que quieres reutilizar una plantilla para mostrar cada libro.
 
