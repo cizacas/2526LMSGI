@@ -10,6 +10,7 @@
       - [Ejemplo paso a paso:](#ejemplo-paso-a-paso)
       - [Estructura básica de una plantilla XSLT](#estructura-básica-de-una-plantilla-xslt)
       - [Principales elementos de XSLT:](#principales-elementos-de-xslt)
+      - [Modularización con `xsl:include`](#modularización-con-xslinclude)
       - [Otras instrucciones útiles de XSLT](#otras-instrucciones-útiles-de-xslt)
       - [¿Cómo se aplica un XSLT?](#cómo-se-aplica-un-xslt)
     - [3.2 Transformación y validación de JSON](#32-transformación-y-validación-de-json)
@@ -388,6 +389,37 @@ De esta forma, `xsl:text` garantiza que se conserven exactamente los espacios y 
 
 > Nota: `xsl:text` es especialmente útil cuando necesitamos conservar varios espacios seguidos, tabulaciones o saltos de línea. Si escribimos ese texto directamente en la plantilla sin `xsl:text`, el procesador XSLT podría “colapsar” los espacios y no aparecerían tal y como los hemos escrito.
 
+#### Modularización con `xsl:include`
+Para el ejemplo de la plantilla de `libro` se puede extraer a un fichero propio y luego incorporarlo.
+
+Archivo `plantillas-libro.xsl`:
+
+```xml
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+  <xsl:template match="libro">
+    <p>
+      <xsl:text>Título: </xsl:text>
+      <xsl:value-of select="titulo"/>
+      <xsl:text> - Autor: </xsl:text>
+      <xsl:value-of select="autor"/>
+    </p>
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+Hoja de estilo principal:
+
+```xml
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+  <xsl:include href="plantillas-libro.xsl"/>
+  <!-- otras plantillas o instrucciones -->
+  <xsl:template match="/">
+    <!-- ... -->
+  </xsl:template>
+</xsl:stylesheet>
+```
+
+De esta manera la plantilla `libro` se mantiene en su propio fichero y puede reutilizarse en varias transformaciones.
 
 #### Otras instrucciones útiles de XSLT 
 
@@ -399,6 +431,7 @@ De esta forma, `xsl:text` garantiza que se conserven exactamente los espacios y 
 | `<xsl:copy>`          | Copia el nodo actual (sin hijos ni atributos opcionalmente).        | Clonar parte del XML manteniendo su estructura  |
 | `<xsl:copy-of>`       | Copia un nodo o conjunto de nodos completo.                         | Duplicar secciones del XML tal cual            |
 | `<xsl:comment>`       | Genera un comentario en la salida.                                  | Añadir comentarios al XML/HTML resultante       |
+
 
 
 #### ¿Cómo se aplica un XSLT?

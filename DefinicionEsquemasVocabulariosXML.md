@@ -45,6 +45,7 @@
       - [Restricciones y extensiones de datos](#restricciones-y-extensiones-de-datos)
     - [Referencias especiales y XSD índices](#referencias-especiales-y-xsd-índices)
       - [Ejemplo de claves e índices](#ejemplo-de-claves-e-índices)
+    - [Incluir esquemas parciales con `xs:include` en XSD](#incluir-esquemas-parciales-con-xsinclude-en-xsd)
     - [Herramientas de validación](#herramientas-de-validación)
       - [Ejemplo de validación con xmllint](#ejemplo-de-validación-con-xmllint)
   - [Conclusión](#conclusión)
@@ -637,6 +638,90 @@ Este fragmento define la estructura de una biblioteca:
 - `<xs:key>` define que el atributo `id` de cada `libro` debe ser único dentro de la biblioteca (clave primaria).
 - `<xs:keyref>` define que el atributo `libroId` de cada `prestamo` debe corresponder a un `id` existente en algún `libro` (clave foránea o referencia).
 Así, se garantiza la integridad referencial entre los préstamos y los libros.
+
+### Incluir esquemas parciales con `xs:include` en XSD
+Es aconsejable separar fragmentos reutilizables en archivos distintos, en XSD se suelen poner en los ficheros incluidos:
+- **Restricciones simples** (simpleType con patrones, rangos, etc.) que se aplican a varios elementos.
+- **Grupos de elementos o atributos** (`xs:group`, `xs:attributeGroup`) que funcionan como "plantillas parciales" de estructura.
+
+A continuación se muestra un ejemplo sencillo basado en el esquema de la biblioteca:
+
+Fichero llamado `comunes.xsd`, que se incluirá desde el esquema principal:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://ejemplo.org/biblioteca"
+           xmlns="http://ejemplo.org/biblioteca"
+           elementFormDefault="qualified">
+  <!-- restricción simple reutilizable -->
+  <xs:simpleType name="ISBNType">
+    <xs:restriction base="xs:string">
+      <!-- patrón para ISBN-10 o ISBN-13 muy simplificado -->
+      <xs:pattern value="(97(8|9))?[0-9]{9}[0-9X]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- grupo de elementos (plantilla parcial) para datos básicos de libro -->
+  <xs:group name="LibroBasicGroup">
+    <xs:sequence>
+      <xs:element name="titulo" type="xs:string"/>
+      <xs:element name="autor" type="xs:string"/>
+    </xs:sequence>
+  </xs:group>
+</xs:schema>
+```
+
+Esquema principal (`biblioteca.xsd`) que incluye `comunes.xsd`:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://ejemplo.org/biblioteca"
+           xmlns="http://ejemplo.org/biblioteca"
+           elementFormDefault="qualified">
+  <xs:include schemaLocation="comunes.xsd"/>
+
+  <xs:element name="biblioteca">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="libro" maxOccurs="unbounded">
+          <xs:complexType>
+            <!-- se reutiliza el grupo definido en comunes.xsd -->
+            <xs:sequence>
+              <xs:group ref="LibroBasicGroup"/>
+              <xs:element name="isbn" type="ISBNType"/>
+              <xs:attribute name="id" type="xs:ID" use="required"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="prestamo" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="libroId" type="xs:IDREF" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <!-- claves e índices como antes -->
+    <xs:key name="claveLibro">
+      <xs:selector xpath="libro"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:keyref name="refLibro" refer="claveLibro">
+      <xs:selector xpath="prestamo"/>
+      <xs:field xpath="@libroId"/>
+    </xs:keyref>
+  </xs:element>
+</xs:schema>
+```
+
+En este ejemplo:
+1. `comunes.xsd` actúa como archivo parcial con definiciones reutilizables: la restricción `ISBNType` y el grupo `LibroBasicGroup` (equivalente a una plantilla parcial).
+2. El esquema principal lo incluye con `<xs:include>` y a continuación usa las definiciones incluidas al declarar el elemento `libro`.
+3. La restricción está definida una sola vez y puede aplicarse a cualquier elemento que necesite un ISBN; el grupo evita repetir los elementos `titulo` y `autor` si se necesitara la misma estructura en otros contextos.
+
+> **Nota:** El atributo `schemaLocation` de `<xs:include>` debe apuntar al fichero relativo o absoluto donde se encuentran las definiciones. Para incluir otros espacios de nombres se usaría en su lugar `<xs:import>`, pero para estructuras dentro del mismo espacio de nombres `<xs:include>` es lo habitual.
+
+Con este patrón la modularidad y el mantenimiento del esquema se simplifican: las "plantillas parciales" y las restricciones comunes residen en un único archivo que puede ser incluido en varios esquemas.
 
 :computer: Actividad 3 y Actividad 4
 
