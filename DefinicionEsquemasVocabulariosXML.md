@@ -642,7 +642,7 @@ Así, se garantiza la integridad referencial entre los préstamos y los libros.
 ### Incluir esquemas parciales con `xs:include` en XSD
 Es aconsejable separar fragmentos reutilizables en archivos distintos, en XSD se suelen poner en los ficheros incluidos:
 - **Restricciones simples** (simpleType con patrones, rangos, etc.) que se aplican a varios elementos.
-- **Grupos de elementos o atributos** (`xs:group`, `xs:attributeGroup`) que funcionan como "plantillas parciales" de estructura.
+- **Tipos reutilizables** (`xs:complexType` con `name`) y, si hace falta, también grupos o atributos comunes.
 
 A continuación se muestra un ejemplo sencillo basado en el esquema de la biblioteca:
 
@@ -662,13 +662,15 @@ Fichero llamado `comunes.xsd`, que se incluirá desde el esquema principal:
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- grupo de elementos (plantilla parcial) para datos básicos de libro -->
-  <xs:group name="LibroBasicGroup">
+  <!-- tipo complejo reutilizable para un libro -->
+  <xs:complexType name="LibroType">
     <xs:sequence>
       <xs:element name="titulo" type="xs:string"/>
       <xs:element name="autor" type="xs:string"/>
+      <xs:element name="isbn" type="ISBNType"/>
     </xs:sequence>
-  </xs:group>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
 </xs:schema>
 ```
 
@@ -684,16 +686,7 @@ Esquema principal (`biblioteca.xsd`) que incluye `comunes.xsd`:
   <xs:element name="biblioteca">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="libro" maxOccurs="unbounded">
-          <xs:complexType>
-            <!-- se reutiliza el grupo definido en comunes.xsd -->
-            <xs:sequence>
-              <xs:group ref="LibroBasicGroup"/>
-              <xs:element name="isbn" type="ISBNType"/>
-              <xs:attribute name="id" type="xs:ID" use="required"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+        <xs:element name="libro" type="LibroType" maxOccurs="unbounded"/>
         <xs:element name="prestamo" maxOccurs="unbounded">
           <xs:complexType>
             <xs:attribute name="libroId" type="xs:IDREF" use="required"/>
@@ -715,13 +708,13 @@ Esquema principal (`biblioteca.xsd`) que incluye `comunes.xsd`:
 ```
 
 En este ejemplo:
-1. `comunes.xsd` actúa como archivo parcial con definiciones reutilizables: la restricción `ISBNType` y el grupo `LibroBasicGroup` (equivalente a una plantilla parcial).
+1. `comunes.xsd` actúa como archivo parcial con definiciones reutilizables: la restricción `ISBNType` y el tipo complejo `LibroType`.
 2. El esquema principal lo incluye con `<xs:include>` y a continuación usa las definiciones incluidas al declarar el elemento `libro`.
-3. La restricción está definida una sola vez y puede aplicarse a cualquier elemento que necesite un ISBN; el grupo evita repetir los elementos `titulo` y `autor` si se necesitara la misma estructura en otros contextos.
+3. La restricción está definida una sola vez y puede aplicarse a cualquier elemento que necesite un ISBN; el `complexType` evita repetir toda la estructura del libro donde se reutilice.
 
 > **Nota:** El atributo `schemaLocation` de `<xs:include>` debe apuntar al fichero relativo o absoluto donde se encuentran las definiciones. Para incluir otros espacios de nombres se usaría en su lugar `<xs:import>`, pero para estructuras dentro del mismo espacio de nombres `<xs:include>` es lo habitual.
 
-Con este patrón la modularidad y el mantenimiento del esquema se simplifican: las "plantillas parciales" y las restricciones comunes residen en un único archivo que puede ser incluido en varios esquemas.
+Con este patrón la modularidad y el mantenimiento del esquema se simplifican: los tipos reutilizables y las restricciones comunes residen en un único archivo que puede ser incluido en varios esquemas.
 
 :computer: Actividad 3 y Actividad 4
 
