@@ -38,6 +38,7 @@
       - [Atributos importantes en XSD:](#atributos-importantes-en-xsd)
     - [Tipos de datos](#tipos-de-datos)
     - [Restricciones sobre los datos](#restricciones-sobre-los-datos)
+      - [Restricción enumeration](#restricción-enumeration)
     - [Otras reglas y estructuras en XSD](#otras-reglas-y-estructuras-en-xsd)
       - [Orden de elementos: sequence y all](#orden-de-elementos-sequence-y-all)
       - [Crear nuevos tipos de datos: complexType y simpleType](#crear-nuevos-tipos-de-datos-complextype-y-simpletype)
@@ -487,6 +488,28 @@ Se pueden establecer restricciones usando <xs:restriction>.
 
 ```
 Este fragmento define el elemento `edad` como un número entero que solo puede tomar valores entre 0 y 120, ambos incluidos. Así, cualquier valor fuera de ese rango no será válido según el esquema XSD.
+
+#### Restricción enumeration
+
+La restricción `enumeration` permite definir una lista cerrada de valores válidos para un elemento o atributo. Solo se aceptarán los valores que aparezcan explícitamente en la lista.
+
+Ejemplo:
+```xml
+<xs:element name="diaSemana">
+  <xs:simpleType>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="lunes"/>
+      <xs:enumeration value="martes"/>
+      <xs:enumeration value="miércoles"/>
+      <xs:enumeration value="jueves"/>
+      <xs:enumeration value="viernes"/>
+      <xs:enumeration value="sábado"/>
+      <xs:enumeration value="domingo"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:element>
+```
+Este fragmento define el elemento `diaSemana` como una cadena de texto cuyo valor debe ser exactamente uno de los siete días de la semana indicados. Cualquier otro valor, como `"festivo"` o `"lun"`, sería inválido según el esquema XSD.
 
 ### Otras reglas y estructuras en XSD
 
