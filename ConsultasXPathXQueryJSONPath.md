@@ -124,6 +124,12 @@ Un documento XML se entiende como un árbol de nodos:
 | Texto | `Monitor Full HD` | El contenido textual de un elemento |
 | Comentario | `<!-- comentario -->` | Comentarios XML |
 
+> **Nota didáctica:** `node()` no es una función de cálculo como `count()` o `sum()`. Es una **prueba de nodo** (node test), igual que `text()` y `comment()`, y se usa en rutas para seleccionar tipos de nodo.
+>
+> Ejemplos:
+> - `//producto/node()` selecciona todos los nodos hijos de cada `producto` (elementos, texto, comentarios, etc.).
+> - `//producto/text()` selecciona solo nodos de texto.
+
 ### 3.3 Rutas absolutas y relativas
 
 Una **ruta absoluta** parte siempre desde la raíz del documento con `/`:
@@ -360,12 +366,13 @@ Dentro del módulo de LMSGI, XPath aparece en:
 
 - Vamos a descargas y elegimos la opción `windows installer`
 
+:pencil: Actividad 1
 
 ## 4. XQuery — Consultar y construir documentos XML
 
 ### 4.1 ¿Qué es XQuery?
 
-XQuery es un lenguaje de consulta para XML diseñado por el W3C. Piensa en él como el **SQL del XML**: permite hacer consultas, filtrar datos, ordenar resultados y construir nuevos documentos a partir de los existentes.
+`XQuery` es un lenguaje de consulta para XML diseñado por el W3C. Piensa en él como el **SQL del XML**: permite hacer consultas, filtrar datos, ordenar resultados y construir nuevos documentos a partir de los existentes.
 
 XQuery usa XPath internamente, así que todo lo que has aprendido en el apartado anterior sirve aquí.
 
@@ -610,10 +617,26 @@ XQuery tiene acceso a todas las funciones de XPath y además añade otras:
 | `max()` | Máximo | `max(//precio)` |
 | `distinct-values()` | Valores únicos | `distinct-values(//categoria)` |
 | `doc()` | Carga un documento XML | `doc("catalogo.xml")//producto` |
+| `collection()` | Carga una colección o base de datos | `collection("F1")//escuderia/nombre` |
 | `string()` | Convierte a texto | `string($p/precio)` |
 | `xs:decimal()` | Convierte a número decimal | `xs:decimal($p/precio)` |
 | `xs:integer()` | Convierte a entero | `xs:integer($p/stock)` |
 | `string-join()` | Une textos con separador | `string-join(//nombre, ', ')` |
+
+**Cuándo usar `doc()` y cuándo `collection()` (en BaseX):**
+
+- Usa `doc("archivo.xml")` cuando trabajas con **un único XML** concreto.
+- Usa `collection("nombre")` cuando consultas una **base de datos/colección** (puede contener uno o varios documentos).
+
+Ejemplos:
+
+```xquery
+doc("catalogo.xml")//producto/nombre
+```
+
+```xquery
+collection("F1")//escuderia/nombre
+```
 
 **Ejemplo con `distinct-values` para obtener categorías:**
 
@@ -643,6 +666,7 @@ let $total := count(//producto[categoria = $cat])
 return
   <categoria nombre="{ $cat }" total="{ $total }"/>
 ```
+:pencil: Actividad 2 y Actividad 3
 
 ### 4.10 Actividad guiada — usar BaseX paso a paso
 
