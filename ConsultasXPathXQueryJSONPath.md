@@ -666,7 +666,7 @@ let $total := count(//producto[categoria = $cat])
 return
   <categoria nombre="{ $cat }" total="{ $total }"/>
 ```
-:pencil: Actividad 2 y Actividad 3
+:pencil: Actividad 2, Actividad 3, Actividad 4 
 
 ### 4.10 Actividad guiada — usar BaseX paso a paso
 
@@ -960,11 +960,23 @@ No todos los evaluadores soportan las mismas funciones, pero en herramientas com
 - [JSONPath Tester - CodeBeautify](https://codebeautify.org/jsonpath-tester): similar.
 
 **En VS Code:**
-- La extensión **REST Client** permite hacer peticiones y aplicar JSONPath.
+- Instala la extensión **JSONPath Extraction** (`davidmarek.jsonpath-extract`).
+- Abre un archivo `.json` (por ejemplo `catalogo.json`).
+- Escribe una consulta JSONPath y ejecuta la extracción para ver los resultados.
+- Empieza por rutas sencillas y luego usa filtros.
 
-**En Postman:**
-- Las aserciones de tests usan JSONPath con la librería `pm.response.json()`.
+Ejemplos de práctica progresiva:
 
+```jsonpath
+$.catalogo.productos[*].nombre
+$.catalogo.productos[?(@.precio > 100)].nombre
+$.catalogo.productos[?(@.stock == 0)]
+$.catalogo.productos[?(@.categoria == 'Audio' || @.categoria == 'Periféricos')]
+```
+
+> **Recomendación de clase:** para este tema basta con practicar sobre archivos JSON locales en VS Code. No es necesario usar REST Client ni Postman.
+
+:pencil: Actividad 5 y Actividad 6 
 
 ## 6. Resumen comparativo
 
