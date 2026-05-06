@@ -101,7 +101,7 @@ Las bases de datos relacionales almacenan la información en tablas relacionadas
 - consultas complejas
 - relaciones claras entre entidades
 
-Ejemplos: MySQL, MariaDB, PostgreSQL, SQL Server y SQLite.
+Ejemplos: MySQL, MariaDB, PostgreSQL y SQL Server.
 
 Ejemplo de estructura relacional:
 
@@ -264,8 +264,8 @@ En la práctica, muchas consultas sobre JSON también se realizan con herramient
 ### 6.5 Herramientas recomendadas
 
 - **VS Code** para editar XML, JSON, XQuery y scripts.
-- **DBeaver** para trabajar con bases de datos relacionales mediante interfaz gráfica.
-- **SQLite** para ejemplos sencillos y portables.
+- **Laragon** como entorno local que incluye el servicio MySQL.
+- **HeidiSQL** para trabajar con bases de datos MySQL mediante interfaz gráfica.
 - **BaseX** para almacenar y consultar XML de forma nativa.
 - **MongoDB Compass** para explorar documentos JSON en MongoDB.
 
@@ -430,7 +430,7 @@ El caso práctico trabaja con una **tienda online** con productos, clientes y pe
 
 | Archivo | Paso | Descripción |
 |---|---|---|
-| [`tienda_crear.sql`](../ejercicios/Tema5/caso_practico/tienda_crear.sql) | 1 y 2 | Crea las tablas e inserta los datos en SQLite |
+| [`tienda_crear.sql`](../ejercicios/Tema5/caso_practico/tienda_crear.sql) | 1 y 2 | Crea las tablas e inserta los datos en MySQL (Laragon) |
 | [`consultas_sql.sql`](../ejercicios/Tema5/caso_practico/consultas_sql.sql) | 3 | Consultas SQL: SELECT, JOIN, GROUP BY |
 | [`productos.xml`](../ejercicios/Tema5/caso_practico/productos.xml) | 4 | Exportación de productos a XML |
 | [`pedidos.json`](../ejercicios/Tema5/caso_practico/pedidos.json) | 4 | Exportación de pedidos a JSON (estructura anidada) |
@@ -439,7 +439,7 @@ El caso práctico trabaja con una **tienda online** con productos, clientes y pe
 
 **Secuencia de trabajo:**
 
-1. Abrir DBeaver, crear una conexión SQLite y ejecutar `tienda_crear.sql`.
+1. Abrir Laragon, arrancar el servicio MySQL, abrir HeidiSQL y ejecutar `tienda_crear.sql` sobre la base de datos `tienda`.
 2. Consultar la base de datos con las sentencias de `consultas_sql.sql`.
 3. Exportar los productos a `productos.xml` (o usar el archivo ya preparado).
 4. Revisar `pedidos.json` y comparar la estructura anidada frente al modelo relacional.
@@ -482,6 +482,7 @@ En consecuencia, dominar SQL, XPath, XQuery y las herramientas de importación, 
 
 - [W3C XPath](https://www.w3.org/TR/xpath-31/)
 - [W3C XQuery](https://www.w3.org/TR/xquery-31/)
-- [SQLite Documentation](https://www.sqlite.org/docs.html)
+- [Laragon](https://laragon.org/)
+- [HeidiSQL Documentation](https://www.heidisql.com/help.php)
 - [BaseX Documentation](https://docs.basex.org/)
 - [MongoDB Manual](https://www.mongodb.com/docs/)
