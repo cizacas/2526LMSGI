@@ -426,16 +426,16 @@ Aunque este módulo se centra en formatos de intercambio, conviene entender que 
 
 ## 10. Caso práctico integrado
 
-El caso práctico trabaja con una **tienda online** con productos, clientes y pedidos. Los archivos están disponibles en la carpeta `ejercicios/Tema5/caso_practico/`.
+El caso práctico trabaja con una **tienda online** con productos, clientes y pedidos. Los archivos están disponibles en la plataforma moodle.
 
 | Archivo | Paso | Descripción |
 |---|---|---|
-| [`tienda_crear.sql`](../ejercicios/Tema5/caso_practico/tienda_crear.sql) | 1 y 2 | Crea las tablas e inserta los datos en MySQL (Laragon) |
-| [`consultas_sql.sql`](../ejercicios/Tema5/caso_practico/consultas_sql.sql) | 3 | Consultas SQL: SELECT, JOIN, GROUP BY |
-| [`productos.xml`](../ejercicios/Tema5/caso_practico/productos.xml) | 4 | Exportación de productos a XML |
-| [`pedidos.json`](../ejercicios/Tema5/caso_practico/pedidos.json) | 4 | Exportación de pedidos a JSON (estructura anidada) |
-| [`consultas_xquery.xq`](../ejercicios/Tema5/caso_practico/consultas_xquery.xq) | 5 | 8 consultas XQuery para ejecutar en BaseX |
-| [`README.md`](../ejercicios/Tema5/caso_practico/README.md) | — | Guía paso a paso completa |
+| `tienda_crear.sql` | 1 y 2 | Crea las tablas e inserta los datos en MySQL (Laragon) |
+| `consultas_sql.sql` | 3 | Consultas SQL: SELECT, JOIN, GROUP BY |
+| `productos.xml` | 4 | Exportación de productos a XML |
+| `pedidos.json` | 4 | Exportación de pedidos a JSON (estructura anidada) |
+| `consultas_xquery.xq` | 5 | 8 consultas XQuery para ejecutar en BaseX |
+| `Practica.pdf`| — | Guía paso a paso completa |
 
 **Secuencia de trabajo:**
 
@@ -465,7 +465,7 @@ La gestión de información en formatos de intercambio exige comprender que el d
 
 El profesional de desarrollo de aplicaciones no solo debe saber crear documentos de intercambio, sino también decidir qué tecnología de almacenamiento es más adecuada, consultar la información con el lenguaje correcto y transformar los datos para integrarlos entre sistemas distintos.
 
-En consecuencia, dominar SQL, XPath, XQuery y las herramientas de importación, exportación y gestión documental constituye una competencia esencial dentro del módulo de Lenguaje de Marcas y Sistemas de Gestión de Información.
+En consecuencia, dominar SQL, XPath, XQuery y las herramientas de importación, exportación constituye una competencia esencial dentro del módulo de Lenguaje de Marcas y Sistemas de Gestión de Información.
 
 ## 13. Actividades propuestas
 
@@ -475,7 +475,7 @@ En consecuencia, dominar SQL, XPath, XQuery y las herramientas de importación, 
 4. Crea un documento XML con información de productos y realiza consultas XPath sobre él.
 5. Construye una consulta XQuery que genere un nuevo XML con los productos de precio superior a un valor dado.
 6. Importa un conjunto de datos desde JSON o XML a una base relacional identificando los posibles problemas de transformación.
-7. Carga un documento XML en BaseX o un documento JSON en MongoDB Compass y realiza varias consultas.
+7. Carga un documento XML en BaseX y realiza varias consultas.
 8. Explica qué sistema utilizarías en cada uno de estos casos: facturación, catálogo web, API REST y archivo documental.
 
 ## 14. Referencias
