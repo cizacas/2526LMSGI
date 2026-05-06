@@ -37,9 +37,10 @@
     - [5.4 Filtros con `?()`](#54-filtros-con-)
     - [5.5 Operadores de comparación en filtros](#55-operadores-de-comparación-en-filtros)
     - [5.6 Comodines](#56-comodines)
-    - [5.7 Funciones habituales en herramientas JSONPath](#57-funciones-habituales-en-herramientas-jsonpath)
-    - [5.8 Comparativa XPath vs JSONPath](#58-comparativa-xpath-vs-jsonpath)
-    - [5.9 Cómo practicar JSONPath](#59-cómo-practicar-jsonpath)
+    - [5.7 Seleccionar varios campos y operadores lógicos (`and` / `or`)](#57-seleccionar-varios-campos-y-operadores-lógicos-and--or)
+    - [5.8 Funciones habituales en herramientas JSONPath](#58-funciones-habituales-en-herramientas-jsonpath)
+    - [5.9 Comparativa XPath vs JSONPath](#59-comparativa-xpath-vs-jsonpath)
+    - [5.10 Cómo practicar JSONPath](#510-cómo-practicar-jsonpath)
   - [6. Resumen comparativo](#6-resumen-comparativo)
   - [7. Ejercicios propuestos](#7-ejercicios-propuestos)
     - [Ejercicios XPath](#ejercicios-xpath)
@@ -298,6 +299,19 @@ XPath incluye un conjunto de funciones incorporadas:
 | `true()` | Valor verdadero | `[@disponible=true()]` |
 | `false()` | Valor falso | `[@disponible=false()]` |
 | `not()` | Negación | `not(precio > 100)` |
+
+**Funciones de fecha y hora (XPath 2.0+):**
+
+| Función | Descripción | Ejemplo |
+|---|---|---|
+| `current-date()` | Fecha actual | `current-date()` |
+| `current-time()` | Hora actual | `current-time()` |
+| `current-dateTime()` | Fecha y hora actuales | `current-dateTime()` |
+| `year-from-date()` | Extrae el año de una fecha | `year-from-date(current-date())` |
+| `month-from-date()` | Extrae el mes de una fecha | `month-from-date(current-date())` |
+| `day-from-date()` | Extrae el día de una fecha | `day-from-date(current-date())` |
+
+> **Nota:** Estas funciones no están en XPath 1.0. Funcionan en motores XPath 2.0+ (por ejemplo BaseX o Saxon).
 
 **Ejemplos usando funciones:**
 
@@ -926,19 +940,53 @@ $.catalogo.productos[0].*
 ```
 Todos los campos del primer producto.
 
-### 5.7 Funciones habituales en herramientas JSONPath
+### 5.7 Seleccionar varios campos y operadores lógicos (`and` / `or`)
+
+Cuando necesites recuperar **más de un campo** de cada objeto, puedes usar una selección múltiple de propiedades.
+
+```jsonpath
+$.catalogo.productos[*]['id','nombre']
+```
+Devuelve, para cada producto, los campos `id` y `nombre`.
+
+```jsonpath
+$.catalogo.productos[0]['nombre','precio']
+```
+Devuelve solo `nombre` y `precio` del primer producto.
+
+En filtros `?()`, los operadores lógicos más habituales son:
+
+| Operador lógico | Significado | Ejemplo |
+|---|---|---|
+| `&&` | AND (y lógico) | `[?(@.disponible == true && @.precio > 100)]` |
+| `\|\|` | OR (o lógico) | `[?(@.categoria == 'Audio' \|\| @.categoria == 'Periféricos')]` |
+
+```jsonpath
+$.catalogo.productos[?(@.disponible == true && @.stock > 10)].nombre
+```
+Productos disponibles **y** con stock mayor que 10.
+
+```jsonpath
+$.catalogo.productos[?(@.categoria == 'Audio' || @.categoria == 'Almacenamiento')].nombre
+```
+Productos de categoría Audio **o** Almacenamiento.
+
+> **Nota de compatibilidad:** Algunas herramientas admiten `and` y `or` en lugar de `&&` y `||`. Si una consulta no funciona, revisa la sintaxis exacta del evaluador que estés usando.
+
+### 5.8 Funciones habituales en herramientas JSONPath
 
 No todos los evaluadores soportan las mismas funciones, pero en herramientas como jsonpath-plus o Postman puedes encontrar:
 
-| Función | Descripción | Ejemplo |
+| Expresión | Descripción | Compatibilidad |
 |---|---|---|
-| `length()` | Longitud de un array o string | `$.catalogo.productos.length()` |
-| `size()` | Número de elementos | `$.catalogo.productos.size()` |
-| `keys()` | Claves de un objeto | `$.catalogo.productos[0].keys()` |
+| `$.catalogo.productos.length` | Número de elementos del array | Alta (jsonpath.com y evaluadores basados en JS) |
+| `$.catalogo.productos.length()` | Variante con función | Media (depende del evaluador) |
+| `$.catalogo.productos.size()` | Variante de algunas librerías | Baja (puede no funcionar) |
+| `$.catalogo.productos[0].keys()` | Claves de un objeto | Baja (solo extensiones concretas) |
 
-> **Consejo:** Si en una herramienta no funciona `length()`, prueba con `$.catalogo.productos[*]` y cuenta el resultado a mano, o usa un lenguaje de programación.
+> **Consejo:** Si `size()` no funciona, usa `$.catalogo.productos.length`. Si tampoco funciona en tu herramienta, usa `$.catalogo.productos[*]` y cuenta el número de resultados.
 
-### 5.8 Comparativa XPath vs JSONPath
+### 5.9 Comparativa XPath vs JSONPath
 
 | Concepto | XPath | JSONPath |
 |---|---|---|
@@ -953,7 +1001,7 @@ No todos los evaluadores soportan las mismas funciones, pero en herramientas com
 
 > **Importante:** En XPath los índices empiezan en **1** (`//producto[1]` es el primero). En JSONPath empiezan en **0** (`$.productos[0]` es el primero).
 
-### 5.9 Cómo practicar JSONPath
+### 5.10 Cómo practicar JSONPath
 
 **Online (sin instalar nada):**
 - [JSONPath Online Evaluator](https://jsonpath.com/): muy visual, el más recomendado para clase.
